@@ -3,6 +3,7 @@
 }
 
 .text-title {
+  color: #26a69a !important;
   font-weight: bold;
   font-style: italic;
   text-align: center;
@@ -11,5 +12,5 @@
 }
 
 .bg-auth {
-  background: #86ceff;
+  background: #26a69a;
 }
