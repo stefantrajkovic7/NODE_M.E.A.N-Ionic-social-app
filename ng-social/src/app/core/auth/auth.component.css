@@ -1,0 +1,12 @@
+.bodyDiv {
+  height: 100vh;
+}
+
+.text-title {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.bg-auth {
+  background: #86ceff;
+}

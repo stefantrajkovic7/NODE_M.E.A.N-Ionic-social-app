@@ -45,6 +45,10 @@
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
 import 'core-js/es7/reflect';
 
+import * as material from 'materialize-css';
+
+window['material'] = material;
+
 
 /**
  * Web Animations `@angular/platform-browser/animations`
