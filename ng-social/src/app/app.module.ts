@@ -4,15 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './core/auth/auth.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthFormComponent } from './shared/components/auth-form/auth-form.component';
 import { LoginComponent } from './core/auth/login/login.component';
 import { RegisterComponent } from './core/auth/register/register.component';
+import { FormInputComponent } from './shared/components/form-input/form-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    AuthFormComponent,
+    FormInputComponent,
     LoginComponent,
     RegisterComponent
   ],
