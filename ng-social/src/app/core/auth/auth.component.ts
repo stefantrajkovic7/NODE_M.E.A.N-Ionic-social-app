@@ -7,9 +7,6 @@ import * as MUI from 'materialize-css';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements AfterViewInit {
-  public username: string;
-  public password: string;
-  public email: string;
 
   constructor() { }
 

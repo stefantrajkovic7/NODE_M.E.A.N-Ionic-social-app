@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  public name = 'email';
+  public type = 'email';
+  public label = 'Email';
 
   constructor() { }
 

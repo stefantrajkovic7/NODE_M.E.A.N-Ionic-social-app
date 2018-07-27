@@ -16,10 +16,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s12">
-              <input id="email" type="email">
-              <label for="email">Email</label>
-            </div>
+            <app-form-input
+                [name]="name"
+                [type]="type"
+                [label]="label">
+            </app-form-input>
           </div>
           <button id="signupbtn" class="btn waves-effect">
             Submit

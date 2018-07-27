@@ -6,11 +6,14 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./form-input.component.css']
 })
 export class FormInputComponent implements OnInit {
-  @Input() field: string;
+  @Input() name: string;
+  @Input() type: string;
+  @Input() label: string;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.name)
   }
 
 }
