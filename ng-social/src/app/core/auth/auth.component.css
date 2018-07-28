@@ -14,3 +14,17 @@
 .bg-auth {
   background: #26a69a;
 }
+
+.tabs a {
+  color: #26a69a;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.tabs .active {
+  background: #e1fcf9 !important;
+}
+
+.auth-cont {
+  height: 503px;
+}
