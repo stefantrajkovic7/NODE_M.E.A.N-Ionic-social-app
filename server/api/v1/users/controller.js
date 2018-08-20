@@ -3,6 +3,7 @@ const keys = require('../../../config/keys');
 const Joi = require('joi');
 const HttpStatus = require('http-status-codes');
 const helper = require('../../../helpers');
+const bcrypt = require('bcrypt');
 
 /**
  * @api {post} /users/create Create user
@@ -17,7 +18,7 @@ const helper = require('../../../helpers');
  *
  * @apiError (500) {String} Internal Server error
  */
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     const { error, value } = Joi.validate(req.body, helper.validateRegistration)
     if (error && error.details) {
         return res
@@ -40,5 +41,27 @@ exports.create = (req, res) => {
             .status(HttpStatus.CONFLICT)
             .json({ message: 'Username already exist!' });
     }
+
+    return bcrypt.hash(value.password, 10, (error, hash) => {
+        if (error) {
+            return res
+                .status(HttpStatus.BAD_REQUEST)
+                .json({ message: 'Server Error' })
+        }
+
+        const body = {
+            username: helper.firstUpperCase(value.username),
+            email: helper.lowerCase(value.email),
+            password: hash
+        };
+
+        User.create(body)
+            .then((user) => {
+                res
+                    .status(HttpStatus.CREATED)
+                    .json({ message: 'User created successfully!', user })
+            })
+            .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR));
+    });
     
 };

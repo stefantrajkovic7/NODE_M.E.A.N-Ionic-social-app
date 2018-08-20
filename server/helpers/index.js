@@ -16,7 +16,7 @@ exports.validateRegistration = Joi.object().keys({
 
 exports.firstUpperCase = username => {
     const name = username.toLowerCase();
-    return name.chatAt(0).toUpperCase() + name.slice(1);
+    return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
 exports.lowerCase = str => {
