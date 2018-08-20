@@ -13,7 +13,8 @@ const UI_API_URL = 'http://localhost:4200';
 // Express Configuration
 app.use(morgan('dev'));
 app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json({limit: '50mb'}))
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bodyParser.json());
 
 // CORS
