@@ -31,5 +31,14 @@ exports.create = (req, res) => {
             .status(HttpStatus.CONFLICT)
             .json({ message: 'Email already exist!' });
     }
+
+    const userName = await User.findOne({
+        username: helper.firstUpperCase(req.body.username)
+    });
+    if (userName) {
+        return res
+            .status(HttpStatus.CONFLICT)
+            .json({ message: 'Username already exist!' });
+    }
     
 };
