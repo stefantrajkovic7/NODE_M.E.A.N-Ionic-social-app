@@ -1,6 +1,7 @@
 const User = require('../../../models/User');
 const keys = require('../../../config/keys');
 const Joi = require('joi');
+const HttpStatus = require('http-status-codes');
 const helper = require('../../../helpers');
 
 /**
@@ -17,8 +18,14 @@ const helper = require('../../../helpers');
  * @apiError (500) {String} Internal Server error
  */
 exports.create = (req, res) => {
-
     const { error, value } = Joi.validate(req.body, helper.validateRegistration)
     
+    if (error && error.details) {
+        return res
+            .status(HttpStatus.BAD_REQUEST)
+            .json({ message: error.details });
+    }
+
+
     
 };
