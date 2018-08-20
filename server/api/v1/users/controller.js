@@ -19,13 +19,17 @@ const helper = require('../../../helpers');
  */
 exports.create = (req, res) => {
     const { error, value } = Joi.validate(req.body, helper.validateRegistration)
-    
     if (error && error.details) {
         return res
             .status(HttpStatus.BAD_REQUEST)
             .json({ message: error.details });
     }
 
-
+    const userEmail = await User.findOne({email: helper.lowerCase(req.body.email)});
+    if (userEmail) {
+        return res
+            .status(HttpStatus.CONFLICT)
+            .json({ message: 'Email already exist!' });
+    }
     
 };

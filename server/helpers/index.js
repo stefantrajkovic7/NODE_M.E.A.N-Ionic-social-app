@@ -13,3 +13,12 @@ exports.validateRegistration = Joi.object().keys({
         .min(5)
         .required() 
 });
+
+exports.firstUpperCase = username => {
+    const name = username.toLowerCase();
+    return name.chatAt(0).toUpperCase() + name.slice(1);
+}
+
+exports.lowerCase = str => {
+    return str.toLowerCase();
+}
