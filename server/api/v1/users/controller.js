@@ -4,6 +4,7 @@ const Joi = require('joi');
 const HttpStatus = require('http-status-codes');
 const helper = require('../../../helpers');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 /**
  * @api {post} /users/create Create user
@@ -57,9 +58,13 @@ exports.create = async (req, res) => {
 
         User.create(body)
             .then((user) => {
+                const token = jwt.sign({data: user}, keys.secret, {
+                    expiresIn: 120
+                });
+
                 res
                     .status(HttpStatus.CREATED)
-                    .json({ message: 'User created successfully!', user })
+                    .json({ message: 'User created successfully!', user, token })
             })
             .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR));
     });
