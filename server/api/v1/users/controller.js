@@ -59,9 +59,10 @@ exports.create = async (req, res) => {
         User.create(body)
             .then((user) => {
                 const token = jwt.sign({data: user}, keys.secret, {
-                    expiresIn: 120
+                    expiresIn: 3200
                 });
 
+                res.cookie('auth', token);
                 res
                     .status(HttpStatus.CREATED)
                     .json({ message: 'User created successfully!', user, token })
