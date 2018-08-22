@@ -14,8 +14,8 @@ export class AuthService {
         return localStorage.getItem('token');
     }
 
-    createUser(body: any): Observable<any> {
-        return this._http.post(`${environment.API_BASE_URL}/users/register`, body)
+    createUser(payload: any): Observable<any> {
+        return this._http.post(`${environment.API_BASE_URL}/users/register`, payload)
     }
 
 }
