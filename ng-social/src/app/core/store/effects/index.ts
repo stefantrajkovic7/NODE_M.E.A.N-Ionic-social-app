@@ -12,8 +12,6 @@ import { tap } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth.service';
 
-
-
 @Injectable()
 export class CoreEffects {
 

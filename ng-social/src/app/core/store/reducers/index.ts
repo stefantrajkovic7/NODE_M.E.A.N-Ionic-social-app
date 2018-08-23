@@ -1,10 +1,14 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import {
+  AuthActionsUnion,
+  AuthActionTypes,
+} from '../actions';
 
-import { AuthActionsUnion } from '../actions';
 import { User } from '../../models';
 
 export interface State extends EntityState<User> {
   loading: boolean;
+  authenticated: boolean;
   user: any[];
 }
 
@@ -15,6 +19,7 @@ export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
 
 export const initialState: State = adapter.getInitialState({
   loading: false,
+  authenticated: false,
   user: null
 });
 
@@ -23,6 +28,30 @@ export function reducer(
   action: AuthActionsUnion
 ): State {
   switch (action.type) {
+
+
+    case AuthActionTypes.Register: {
+      return Object.assign({}, state, {
+        loading: true
+      });
+    }
+
+    case AuthActionTypes.RegisterSuccess: {
+      return Object.assign({}, state, {
+        authenticated: true,
+        loading: true,
+        user: action.payload.user
+      });
+    }
+
+    case AuthActionTypes.Logout: {
+      return Object.assign({}, state, {
+        authenticated: false,
+        user: null
+      });
+    }
+      
+       
 
     // case SurveyActionTypes.LoadSurveysSuccess: {
     //   return adapter.addAll(action.payload, {
