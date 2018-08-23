@@ -29,7 +29,6 @@ export function reducer(
 ): State {
   switch (action.type) {
 
-
     case AuthActionTypes.Register: {
       return Object.assign({}, state, {
         loading: true
@@ -37,6 +36,20 @@ export function reducer(
     }
 
     case AuthActionTypes.RegisterSuccess: {
+      return Object.assign({}, state, {
+        authenticated: true,
+        loading: true,
+        user: action.payload.user
+      });
+    }
+
+    case AuthActionTypes.Login: {
+      return Object.assign({}, state, {
+        loading: true
+      });
+    }
+
+    case AuthActionTypes.LoginSuccess: {
       return Object.assign({}, state, {
         authenticated: true,
         loading: true,
