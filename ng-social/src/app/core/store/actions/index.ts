@@ -3,7 +3,8 @@ import { User } from '../../models';
 
 export enum AuthActionTypes {
     Register = '[Auth] Register Action',
-    RegisterSuccess = '[Auth] RegisterSuccess Action',
+    RegisterSuccess = '[Auth] Register Success Action',
+    RegisterFail = '[Auth] Register Failed Action',
     Logout = '[Auth] Logout Action'
 }
 
@@ -23,6 +24,12 @@ export class RegisterSuccess implements Action {
   constructor(public payload: any) { }
 }
 
+export class RegisterFail implements Action {
+  readonly type = AuthActionTypes.RegisterFail;
+
+  constructor(public message: any) { }
+}
+
 export class Logout implements Action {
   readonly type = AuthActionTypes.Logout;
 }
@@ -30,5 +37,6 @@ export class Logout implements Action {
 export type AuthActionsUnion =
   | Register
   | RegisterSuccess
+  | RegisterFail
   | Logout
 

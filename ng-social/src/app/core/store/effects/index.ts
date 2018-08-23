@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, Effect, ofType  } from '@ngrx/effects';
 
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/catch';
-import { Observable } from 'rxjs';
+import {
+  AuthActionsUnion,
+  AuthActionTypes,
+  Register,
+  RegisterSuccess,
+  RegisterFail,
+} from '../actions';
+
+import { User } from '../../models';
+
+import {catchError, map, switchMap, retry} from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth.service';
@@ -21,8 +28,22 @@ export class CoreEffects {
     private router: Router,
   ) {}
 
+
   @Effect()
-    register: Observable<any> = this.actions
+  register: Observable<Action> = this.actions
+    .ofType(AuthActionTypes.Register)
+    .pipe(
+      map((action: Register) => action.payload),
+      switchMap(payload => {
+        return this.authService.createUser(payload)
+          .pipe(
+            retry(3),
+            map(user => new RegisterSuccess({ payload: user })),
+            catchError(error => of(new RegisterFail({message: error})))
+          )
+      })
+    );
+    
     
 
 }
