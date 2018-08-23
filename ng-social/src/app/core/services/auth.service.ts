@@ -18,4 +18,8 @@ export class AuthService {
         return this._http.post(`${environment.API_BASE_URL}/users/register`, payload)
     }
 
+    loginUser(payload: any): Observable<any> {
+        return this._http.post(`${environment.API_BASE_URL}/users/login`, payload)
+    }
+
 }

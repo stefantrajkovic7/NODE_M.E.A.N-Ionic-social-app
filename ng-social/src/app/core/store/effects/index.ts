@@ -9,6 +9,9 @@ import {
   Register,
   RegisterSuccess,
   RegisterFail,
+  Login,
+  LoginSuccess,
+  LoginFail,
 } from '../actions';
 
 import { User } from '../../models';
@@ -43,6 +46,24 @@ export class CoreEffects {
           )
       })
     );
+
+  @Effect()
+  login: Observable<Action> = this.actions
+    .ofType(AuthActionTypes.Login)
+    .pipe(
+      map((action: Login) => action.payload),
+      switchMap(payload => {
+        return this.authService.loginUser(payload)
+          .pipe(
+            retry(3),
+            map(user => {
+              sessionStorage.setItem('token', user.payload.token);
+              return new LoginSuccess({ payload: user })
+            }),
+            catchError(error => of(new LoginFail({message: error})))
+          )
+      })
+    );  
     
     
 
