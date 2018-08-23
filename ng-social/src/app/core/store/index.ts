@@ -27,6 +27,10 @@ import {
     state => state.auth
   );
   
+  export const getListAuthState = createSelector(
+    getAuthState,
+    (state: AuthState) => state.auth
+  );
   
   export const {
     selectEntities: getAuthListEntities,
@@ -34,10 +38,10 @@ import {
     selectTotal: getTotalAuth,
   } = fromAuth.adapter.getSelectors(getAuthEntitiesState);
   
-//   export const getListState = createSelector(
-//     getSurveysState,
-//     (state: SurveysState) => state.surveys
-//   );
+  export const isAuthenticated = createSelector(
+    getListAuthState,
+    fromAuth.isAuthenticated
+  );
   
 //   export const getListLoaded = createSelector(
 //     getListState,

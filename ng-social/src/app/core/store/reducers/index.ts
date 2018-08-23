@@ -95,6 +95,6 @@ export function reducer(
   }
 }
 
-// export const getLoaded = (state: State) => state.loaded;
+export const isAuthenticated = (state: State) => state.authenticated;
 
-// export const getLoading = (state: State) => state.loading;
+export const getLoading = (state: State) => state.loading;
