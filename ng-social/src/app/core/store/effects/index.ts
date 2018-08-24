@@ -63,7 +63,16 @@ export class CoreEffects {
             catchError(error => of(new LoginFail({message: error})))
           )
       })
-    );  
+    ); 
+    
+  @Effect({ dispatch: false })
+  logOut: Observable<any> = this.actions.pipe(
+    ofType(AuthActionTypes.Logout),
+    tap(() => {
+      sessionStorage.removeItem('token');
+      // this.router
+    })
+  );  
     
     
 
