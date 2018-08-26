@@ -2,27 +2,26 @@
     <div class="row">
       <div class="col s10 offset-m1" id="panel">
         <h3 id="title">Sign Up</h3>
-        <form class="col s12">
+        <form novalidate [formGroup]="signupForm" class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input id="r_user_name" type="text">
+              <input formControlName="username" id="r_user_name" type="text">
               <label for="r_user_name">Username</label>
             </div>
           </div>
           <div class="row">
-            <app-form-input
-                [name]="name"
-                [type]="type"
-                [label]="label">
-            </app-form-input>
+            <div class="input-field col s12">
+              <input formControlName="email" id="r_email" type="email">
+              <label for="r_email">Email</label>
+            </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="pass" type="password">
+              <input formControlName="password" id="pass" type="password">
               <label for="pass">Password</label>
             </div>
           </div>
-          <button id="signupbtn" class="btn waves-effect">
+          <button (click)="register()" id="signupbtn" class="btn waves-effect">
             Submit
           </button>
         </form>

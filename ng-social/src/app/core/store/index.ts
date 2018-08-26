@@ -43,8 +43,8 @@ import {
     fromAuth.isAuthenticated
   );
   
-//   export const getListLoaded = createSelector(
-//     getListState,
-//     fromSurveys.getLoaded
-//   );
+  export const getLoading = createSelector(
+    getListAuthState,
+    fromAuth.getLoading
+  );
   

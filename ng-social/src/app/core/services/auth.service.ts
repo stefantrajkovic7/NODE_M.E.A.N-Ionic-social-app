@@ -11,7 +11,7 @@ export class AuthService {
     constructor(private _http: HttpClient) {}
 
     getToken(): string {
-        return localStorage.getItem('token');
+        return sessionStorage.getItem('token');
     }
 
     createUser(payload: any): Observable<any> {

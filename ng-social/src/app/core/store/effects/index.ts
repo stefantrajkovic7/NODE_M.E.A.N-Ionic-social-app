@@ -33,7 +33,7 @@ export class CoreEffects {
 
 
   @Effect()
-  register: Observable<Action> = this.actions
+  register$: Observable<Action> = this.actions
     .ofType(AuthActionTypes.Register)
     .pipe(
       map((action: Register) => action.payload),
@@ -48,7 +48,7 @@ export class CoreEffects {
     );
 
   @Effect()
-  login: Observable<Action> = this.actions
+  login$: Observable<Action> = this.actions
     .ofType(AuthActionTypes.Login)
     .pipe(
       map((action: Login) => action.payload),
@@ -66,7 +66,7 @@ export class CoreEffects {
     ); 
     
   @Effect({ dispatch: false })
-  logOut: Observable<any> = this.actions.pipe(
+  logOut$: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.Logout),
     tap(() => {
       sessionStorage.removeItem('token');
