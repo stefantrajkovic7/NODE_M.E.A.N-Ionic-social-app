@@ -36,7 +36,7 @@ export class CoreEffects {
   register$: Observable<Action> = this.actions
     .ofType(AuthActionTypes.Register)
     .pipe(
-      map((action: Register) => action.payload),
+      map((action: any) => action.payload),
       switchMap(payload => {
         return this.authService.createUser(payload)
           .pipe(
@@ -51,7 +51,7 @@ export class CoreEffects {
   login$: Observable<Action> = this.actions
     .ofType(AuthActionTypes.Login)
     .pipe(
-      map((action: Login) => action.payload),
+      map((action: any) => action.payload),
       switchMap(payload => {
         return this.authService.loginUser(payload)
           .pipe(

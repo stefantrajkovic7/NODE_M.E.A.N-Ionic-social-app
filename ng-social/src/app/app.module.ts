@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { DBModule } from '@ngrx/db';
 import {
-  StoreRouterConnectingModule,
+  StoreRouterConnectingModule, RouterStateSerializer,
 } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -20,6 +20,8 @@ import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './reducers';
 import { schema } from './db';
 import { CoreEffects } from './core/store/effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomRouterStateSerializer } from './utils/router-state-serializer';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { CoreEffects } from './core/store/effects';
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule, 
     StoreModule.forRoot(reducers, { metaReducers }),
 
     /**
@@ -76,7 +80,10 @@ import { CoreEffects } from './core/store/effects';
     DBModule.provideDB(schema),
     AppRoutingModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

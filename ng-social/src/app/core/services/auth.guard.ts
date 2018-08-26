@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router, CanLoad, Route } from "@angular/router";
-import { Observable } from "rxjs/Observable";
 import { Store } from "@ngrx/store";
 import { isAuthenticated } from "../store";
 import { Logout } from "../store/actions";

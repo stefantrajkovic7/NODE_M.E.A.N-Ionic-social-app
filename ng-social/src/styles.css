@@ -2,3 +2,7 @@
 .tabs .indicator {
     background-color: #26a69a !important;
 }
+
+.help-block span {
+    color: red
+}

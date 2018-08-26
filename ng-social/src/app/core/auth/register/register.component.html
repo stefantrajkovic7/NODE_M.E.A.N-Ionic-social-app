@@ -6,18 +6,36 @@
           <div class="row">
             <div class="input-field col s12">
               <input formControlName="username" id="r_user_name" type="text">
+              <span class="help-block" *ngIf="(signupForm.get('username').touched || signupForm.get('username').dirty) && signupForm.get('username').errors">
+                <span *ngIf="signupForm.get('username').errors.required">
+                    Username is required
+                </span>
+              </span>
               <label for="r_user_name">Username</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
               <input formControlName="email" id="r_email" type="email">
+              <span class="help-block" *ngIf="(signupForm.get('email').touched || signupForm.get('email').dirty) && signupForm.get('email').errors">
+                <span *ngIf="signupForm.get('email').errors.required">
+                  Email is required
+                </span>
+                <span *ngIf="signupForm.get('email').errors.email">
+                  Invalid Email
+              </span>
+              </span>
               <label for="r_email">Email</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
               <input formControlName="password" id="pass" type="password">
+              <span class="help-block" *ngIf="(signupForm.get('password').touched || signupForm.get('password').dirty) && signupForm.get('password').errors">
+                <span *ngIf="signupForm.get('password').errors.required">
+                    Password is required
+                </span>
+              </span>
               <label for="pass">Password</label>
             </div>
           </div>

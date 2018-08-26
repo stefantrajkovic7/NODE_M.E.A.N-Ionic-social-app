@@ -2,8 +2,8 @@ import {
     createSelector,
     createFeatureSelector,
     ActionReducerMap,
+    select
   } from '@ngrx/store';
-  import '@ngrx/core/add/operator/select';
   
   import * as fromAuth from './reducers';
   import * as fromRoot from '../../reducers';

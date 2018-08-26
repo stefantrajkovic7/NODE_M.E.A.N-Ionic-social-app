@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { Observable } from "rxjs";
+import {RequestOptions, Headers} from '@angular/http';
 import { map } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 
@@ -15,11 +16,19 @@ export class AuthService {
     }
 
     createUser(payload: any): Observable<any> {
-        return this._http.post(`${environment.API_BASE_URL}/users/register`, payload)
+
+        // Need this for later
+        // let headers = new Headers({
+        //     'Accept': 'aplication/json',
+        //     'Content-Type': 'application/json'
+        // });
+        // let options = new RequestOptions({ headers: headers, withCredentials: true });
+
+        return this._http.post(`${environment.API_BASE_URL}users/register`, payload)
     }
 
     loginUser(payload: any): Observable<any> {
-        return this._http.post(`${environment.API_BASE_URL}/users/login`, payload)
+        return this._http.post(`${environment.API_BASE_URL}users/login`, payload)
     }
 
 }
