@@ -38,8 +38,8 @@ export function reducer(
     case AuthActionTypes.RegisterSuccess: {
       return Object.assign({}, state, {
         authenticated: true,
-        loading: true,
-        user: action.payload.user
+        loading: false,
+        user: action.payload
       });
     }
 
@@ -52,7 +52,7 @@ export function reducer(
     case AuthActionTypes.LoginSuccess: {
       return Object.assign({}, state, {
         authenticated: true,
-        loading: true,
+        loading: false,
         user: action.payload.user
       });
     }

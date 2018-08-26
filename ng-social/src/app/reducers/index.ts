@@ -7,6 +7,8 @@ import {
   } from '@ngrx/store';
   import { environment } from '../../environments/environment';
   import * as fromRouter from '@ngrx/router-store';
+  import * as fromAuth from '../core/store';
+  import * as fromAuthReduce from '../core/store/reducers';
   
   /**
    * storeFreeze prevents state from being mutated. When mutation occurs, an
@@ -28,7 +30,7 @@ import { RouterStateUrl } from '../utils/router-state-serializer';
    * our top level state interface is just a map of keys to inner state types.
    */
   export interface State {
-    // layout: fromLayout.State;
+    auth: fromAuth.State;
     router: fromRouter.RouterReducerState<RouterStateUrl>;
   }
   
@@ -37,8 +39,8 @@ import { RouterStateUrl } from '../utils/router-state-serializer';
    * These reducer functions are called with each dispatched action
    * and the current or initial state and return a new immutable state.
    */
-  export const reducers: ActionReducerMap<State> = {
-    // layout: fromLayout.reducer,
+  export const reducers: ActionReducerMap<any> = {
+    auth: fromAuthReduce.reducer,
     router: fromRouter.routerReducer,
   };
   
