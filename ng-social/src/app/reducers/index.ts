@@ -30,8 +30,7 @@ import { RouterStateUrl } from '../utils/router-state-serializer';
    * our top level state interface is just a map of keys to inner state types.
    */
   export interface State {
-    auth: fromAuth.State;
-    router: fromRouter.RouterReducerState<RouterStateUrl>;
+
   }
   
   /**
@@ -62,3 +61,6 @@ import { RouterStateUrl } from '../utils/router-state-serializer';
   export const metaReducers: MetaReducer<State>[] = !environment.production
     ? [logger, storeFreeze]
     : [];
+
+
+    export const getAuthState = createFeatureSelector<fromAuth.State>('auth');

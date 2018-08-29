@@ -57,7 +57,7 @@ export class CoreEffects {
           .pipe(
             retry(3),
             map(user => {
-              sessionStorage.setItem('token', user.payload.token);
+              localStorage.setItem('token', user.payload.token);
               return new LoginSuccess({ payload: user })
             }),
             catchError(error => of(new LoginFail({message: error})))
@@ -69,7 +69,7 @@ export class CoreEffects {
   logOut$: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.Logout),
     tap(() => {
-      sessionStorage.removeItem('token');
+      localStorage.removeItem('token');
       // this.router
     })
   );  

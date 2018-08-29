@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { Observable } from "rxjs";
-import {RequestOptions, Headers} from '@angular/http';
+import {RequestOptions, Headers, RequestOptionsArgs} from '@angular/http';
 import { map } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 
@@ -12,19 +12,23 @@ export class AuthService {
     constructor(private _http: HttpClient) {}
 
     getToken(): string {
-        return sessionStorage.getItem('token');
+        return localStorage.getItem('token');
     }
 
     createUser(payload: any): Observable<any> {
 
-        // Need this for later
-        // let headers = new Headers({
-        //     'Accept': 'aplication/json',
-        //     'Content-Type': 'application/json'
-        // });
-        // let options = new RequestOptions({ headers: headers, withCredentials: true });
+        const options =
+         {   
+           headers:
+            new HttpHeaders (
+                {   
+                    'Content-Type': 'application/json'
+                }
+            ),
+             withCredentials: true,
+         };
 
-        return this._http.post(`${environment.API_BASE_URL}users/register`, payload)
+        return this._http.post(`${environment.API_BASE_URL}users/register`, payload, options)
     }
 
     loginUser(payload: any): Observable<any> {
