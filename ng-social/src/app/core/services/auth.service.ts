@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { Observable } from "rxjs";
-import {RequestOptions, Headers, RequestOptionsArgs} from '@angular/http';
-import { map } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 
 @Injectable({
@@ -11,9 +9,10 @@ import { environment } from "../../../environments/environment";
 export class AuthService {
     constructor(private _http: HttpClient) {}
 
-    getToken(): string {
-        return localStorage.getItem('token');
-    }
+    // const httpGetOptions =
+    //     {   
+    //         withCredentials: true,
+    //     }; 
 
     createUser(payload: any): Observable<any> {
 

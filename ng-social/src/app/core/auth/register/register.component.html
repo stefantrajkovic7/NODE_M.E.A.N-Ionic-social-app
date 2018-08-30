@@ -2,13 +2,21 @@
     <div class="row">
       <div class="col s10 offset-m1" id="panel">
         <h3 id="title">Sign Up</h3>
-        <form novalidate [formGroup]="signupForm" class="col s12">
+        <form autocomplete="off" novalidate [formGroup]="signupForm" class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input formControlName="username" id="r_user_name" type="text">
+                <input style="display:none">
+                <input type="password" style="display:none">
+              <input autocomplete="off" formControlName="username" id="r_user_name" type="text">
               <span class="help-block" *ngIf="(signupForm.get('username').touched || signupForm.get('username').dirty) && signupForm.get('username').errors">
                 <span *ngIf="signupForm.get('username').errors.required">
                     Username is required
+                </span>
+                <span *ngIf="signupForm.get('username').errors.minlength">
+                    Minimum 5 chars allowed
+                </span>
+                <span *ngIf="signupForm.get('username').errors.maxlength">
+                    Maximum 10 chars allowed
                 </span>
               </span>
               <label for="r_user_name">Username</label>
@@ -16,14 +24,14 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input formControlName="email" id="r_email" type="email">
+              <input autocomplete="nope" formControlName="email" id="r_email" type="email">
               <span class="help-block" *ngIf="(signupForm.get('email').touched || signupForm.get('email').dirty) && signupForm.get('email').errors">
                 <span *ngIf="signupForm.get('email').errors.required">
                   Email is required
                 </span>
                 <span *ngIf="signupForm.get('email').errors.email">
                   Invalid Email
-              </span>
+                </span>
               </span>
               <label for="r_email">Email</label>
             </div>
@@ -34,6 +42,9 @@
               <span class="help-block" *ngIf="(signupForm.get('password').touched || signupForm.get('password').dirty) && signupForm.get('password').errors">
                 <span *ngIf="signupForm.get('password').errors.required">
                     Password is required
+                </span>
+                <span *ngIf="signupForm.get('password').errors.minlength">
+                    Minimum 5 chars allowed
                 </span>
               </span>
               <label for="pass">Password</label>
