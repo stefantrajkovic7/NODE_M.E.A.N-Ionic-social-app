@@ -65,9 +65,35 @@ exports.create = async (req, res) => {
                 res.cookie('auth', token, { httpOnly: true });
                 res
                     .status(HttpStatus.CREATED)
-                    .json({ message: 'User created successfully!', user, token })
+                    .json({ message: 'Success', user, token })
             })
             .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR));
     });
     
 };
+
+exports.find = async (req, res) => {
+
+    if (!req.body.username || !req.body.password) {
+        return res.status(HttpStatus.NOT_FOUND).json({message: 'No empty fields allowed'});
+    }
+
+    await User.findOne({ username: helper.firstUpperCase(req.body.username) })
+        .then(user => {
+            if (!user) {
+                return res.status(HttpStatus.NOT_FOUND).json({message: 'Username not found'});
+            }
+            return bcrypt.compare(req.body.password, user.password)
+                .then(result => {
+                    if (!result) {
+                        return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Validation Failed!' })
+                    }
+                    const token = jwt.sign({data: user}, keys.secret, {
+                        expiresIn: '1h'
+                    });
+                    res.cookie('auth', token, { httpOnly: true });
+                    return res.status(HttpStatus.OK).json({message: 'Success', user, token});
+                });
+        })
+        .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
+}
