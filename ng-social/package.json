@@ -31,6 +31,7 @@
     "jquery": "^3.3.1",
     "materialize-css": "^1.0.0-rc.2",
     "ngrx-store-freeze": "^0.2.4",
+    "ngx-cookie-service": "^1.0.10",
     "rxjs": "^5.6.0-forward-compat.5",
     "zone.js": "^0.8.26"
   },

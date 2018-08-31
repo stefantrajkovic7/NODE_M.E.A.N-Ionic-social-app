@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { CookieService } from 'ngx-cookie-service';
 import { DBModule } from '@ngrx/db';
 import {
   StoreRouterConnectingModule, RouterStateSerializer,
@@ -23,6 +24,7 @@ import { CoreEffects } from './core/store/effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomRouterStateSerializer } from './utils/router-state-serializer';
 import { AuthGuard } from './core/services/auth.guard';
+import { AuthCookieService } from './core/services/auth-cookie.service';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import { AuthGuard } from './core/services/auth.guard';
   ],
   providers: [
     AuthService,
+    CookieService,
+    AuthCookieService,
     AuthGuard,
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
   ],
