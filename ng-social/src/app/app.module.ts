@@ -22,6 +22,7 @@ import { schema } from './db';
 import { CoreEffects } from './core/store/effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomRouterStateSerializer } from './utils/router-state-serializer';
+import { AuthGuard } from './core/services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { CustomRouterStateSerializer } from './utils/router-state-serializer';
   ],
   providers: [
     AuthService,
+    AuthGuard,
     { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
   ],
   bootstrap: [AppComponent]

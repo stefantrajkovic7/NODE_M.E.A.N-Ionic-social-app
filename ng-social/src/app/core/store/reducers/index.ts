@@ -6,13 +6,13 @@ import {
 
 import { User } from '../../models';
 
-export interface State extends EntityState<User> {
+export interface State extends EntityState<any> {
   loading: boolean;
   authenticated: boolean;
   user: any[];
 }
 
-export const adapter: EntityAdapter<User> = createEntityAdapter<User>({
+export const adapter: EntityAdapter<User> = createEntityAdapter<any>({
   selectId: (user: User) => user.id,
   sortComparer: false,
 });
