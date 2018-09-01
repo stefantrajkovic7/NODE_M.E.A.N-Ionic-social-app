@@ -21,10 +21,8 @@ export class AuthGuard implements CanActivate {
     const token = this.authCookieService.getToken();
 
     if (token) {
-      console.log(token)
       return true
     } else {
-       console.log(token)
         this.store.dispatch(new Logout())
         return false
     }
