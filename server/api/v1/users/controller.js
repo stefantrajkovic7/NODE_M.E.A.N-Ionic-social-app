@@ -62,7 +62,7 @@ exports.create = async (req, res) => {
                     expiresIn: '1h'
                 });
 
-                res.cookie('auth', token, { httpOnly: true });
+                res.cookie('frenzy_token', token, { httpOnly: true });
                 res
                     .status(HttpStatus.CREATED)
                     .json({ message: 'Success', user, token })
@@ -85,13 +85,15 @@ exports.find = async (req, res) => {
             }
             return bcrypt.compare(req.body.password, user.password)
                 .then(result => {
+
                     if (!result) {
                         return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Validation Failed!' })
                     }
+
                     const token = jwt.sign({data: user}, keys.secret, {
                         expiresIn: '1h'
                     });
-                    res.cookie('auth', token, { httpOnly: true });
+                    res.cookie('frenzy_token', token, { httpOnly: true });
                     return res.status(HttpStatus.OK).json({message: 'Success', user, token});
                 });
         })
