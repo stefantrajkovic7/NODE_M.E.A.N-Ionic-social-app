@@ -53,7 +53,7 @@ export function reducer(
       return Object.assign({}, state, {
         authenticated: true,
         loading: false,
-        user: action.payload.user
+        user: action.payload
       });
     }
 

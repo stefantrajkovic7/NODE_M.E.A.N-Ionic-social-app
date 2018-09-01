@@ -2,20 +2,30 @@
     <div class="row">
       <div class="col s10 offset-m1" id="panel">
         <h3 id="title">Login</h3>
-        <form class="col s12">
+        <form autocomplete="off" novalidate [formGroup]="loginForm" class="col s12">
           <div class="row">
             <div class="input-field col s12">
-              <input id="l_user_name" type="text">
-              <label for="l_user_name">Username</label>
+              <input formControlName="username" id="l_username" type="text">
+              <label for="l_username">Username</label>
+              <span class="help-block" *ngIf="(loginForm.get('username').touched || loginForm.get('username').dirty) && loginForm.get('username').errors">
+                  <span *ngIf="loginForm.get('username').errors.required">
+                      Username is required
+                  </span>
+              </span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="password" type="password">
+              <input formControlName="password" id="password" type="password">
               <label for="password">Password</label>
+              <span class="help-block" *ngIf="(loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').errors">
+                  <span *ngIf="loginForm.get('password').errors.required">
+                      Password is required
+                  </span>
+              </span>
             </div>
           </div>
-          <button id="loginbtn" class="btn waves-effect">
+          <button (click)="login()" id="loginbtn" class="btn waves-effect">
             Submit
           </button>
         </form>

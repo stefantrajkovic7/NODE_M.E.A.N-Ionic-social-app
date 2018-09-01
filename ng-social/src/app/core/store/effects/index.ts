@@ -57,7 +57,7 @@ export class CoreEffects {
           .pipe(
             retry(3),
             map(user => {
-              localStorage.setItem('token', user.payload.token);
+              // localStorage.setItem('token', user.payload.token);
               return new LoginSuccess({ payload: user })
             }),
             catchError(error => of(new LoginFail({message: error})))
