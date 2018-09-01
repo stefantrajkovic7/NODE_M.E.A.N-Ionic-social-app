@@ -62,7 +62,7 @@ exports.create = async (req, res) => {
                     expiresIn: '1h'
                 });
 
-                res.cookie('frenzy_token', token, { httpOnly: true });
+                res.cookie('frenzy_token', token);
                 res
                     .status(HttpStatus.CREATED)
                     .json({ message: 'Success', user, token })
@@ -93,7 +93,7 @@ exports.find = async (req, res) => {
                     const token = jwt.sign({data: user}, keys.secret, {
                         expiresIn: '1h'
                     });
-                    res.cookie('frenzy_token', token, { httpOnly: true });
+                    res.cookie('frenzy_token', token);
                     return res.status(HttpStatus.OK).json({message: 'Success', user, token});
                 });
         })

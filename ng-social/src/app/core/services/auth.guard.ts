@@ -1,42 +1,33 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router, CanLoad, Route } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from "@angular/router";
 import { Store, select } from "@ngrx/store";
 import { isAuthenticated } from "../store";
 import { Logout } from "../store/actions";
 import { take, tap, map } from 'rxjs/operators';
+import { AuthCookieService } from "./auth-cookie.service";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private store: Store<any>, private router: Router) {}
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.store.pipe(
-      select(isAuthenticated),
-      take(1),
-      map((data) => {
-        if(data) {
-          return true
-        } else {
-            this.router.navigate(['/'])
-        }
-        
-      }))
-    // observable.subscribe(authenticated => {
-    //   if (!authenticated) {
-    //     this.store.dispatch(new Logout())
-    //   }
-    // });
+  constructor(private store: Store<any>, private authCookieService: AuthCookieService, private router: Router) {
+    const stoken = this.authCookieService.getToken();
+    console.log(stoken)
   }
 
-  // canLoad(route: Route) {
-  //   const observable = this.store.select(isAuthenticated);
-  //   observable.subscribe(authenticated => {
-  //     if (!authenticated) {
-  //       this.store.dispatch(new Logout())
-  //       this.router.navigate(['/'])
-  //     }
-  //   });
-  //   return this.store.select(isAuthenticated).pipe(take(1));
-  // }
+  canActivate(
+    next: ActivatedRouteSnapshot, 
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    const token = this.authCookieService.getToken();
+
+    if (token) {
+      console.log(token)
+      return true
+    } else {
+       console.log(token)
+        this.store.dispatch(new Logout())
+        return false
+    }
+  }
     
 }
