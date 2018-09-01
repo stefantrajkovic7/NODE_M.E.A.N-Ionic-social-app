@@ -21,6 +21,7 @@ import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth.service';
+import { AuthCookieService } from '../../services/auth-cookie.service';
 
 @Injectable()
 export class CoreEffects {
@@ -28,6 +29,7 @@ export class CoreEffects {
   constructor(
     private actions: Actions,
     private authService: AuthService,
+    private cookieService: AuthCookieService,
     private router: Router,
   ) {}
 
@@ -41,7 +43,11 @@ export class CoreEffects {
         return this.authService.createUser(payload)
           .pipe(
             retry(3),
-            map(user => new RegisterSuccess({ payload: user })),
+            map(user => {
+              this.cookieService.setToken(user.token);
+              this.router.navigate(['/streams']);
+              return new RegisterSuccess({ payload: user })
+            }),
             catchError(error => of(new RegisterFail({message: error})))
           )
       })
@@ -57,7 +63,8 @@ export class CoreEffects {
           .pipe(
             retry(3),
             map(user => {
-              // localStorage.setItem('token', user.payload.token);
+              this.cookieService.setToken(user.token);
+              this.router.navigate(['/streams'])
               return new LoginSuccess({ payload: user })
             }),
             catchError(error => of(new LoginFail({message: error})))
@@ -69,8 +76,8 @@ export class CoreEffects {
   logOut$: Observable<any> = this.actions.pipe(
     ofType(AuthActionTypes.Logout),
     tap(() => {
-      localStorage.removeItem('token');
-      // this.router
+      this.cookieService.deleteToken()
+      this.router.navigate(['/'])
     })
   );  
     

@@ -10,8 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'streams',
-    loadChildren: './streams/streams.module#StreamsModule',
-    canActivate: [AuthGuard]
+    loadChildren: './streams/streams.module#StreamsModule'
   }
 ];
 
