@@ -9,10 +9,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private store: Store<any>, private authCookieService: AuthCookieService, private router: Router) {
-    const stoken = this.authCookieService.getToken();
-    console.log(stoken)
-  }
+  constructor(private store: Store<any>, private authCookieService: AuthCookieService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot, 

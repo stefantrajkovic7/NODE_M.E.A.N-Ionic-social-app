@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StreamsComponent } from './streams.component';
 import { StreamsRoutingModule } from './streams-routing.module';
 import { ToolbarComponent } from '../components/toolbar.component';
+import { SideComponent } from './components/side.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { ToolbarComponent } from '../components/toolbar.component';
   ],
   declarations: [
     StreamsComponent,
+    SideComponent,
     ToolbarComponent
   ],
   providers: []

@@ -46,6 +46,10 @@ nav {
     text-align: center;
     margin: 0 auto;
   }
+
+  a .material-icons {
+    color: white !important;
+  }
   
   .material-icons {
     color: #ffffff !important;
