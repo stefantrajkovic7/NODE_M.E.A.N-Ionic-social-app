@@ -4,6 +4,9 @@ export enum PostsActionTypes {
     LoadPosts = '[Streams] Load Posts',
     LoadPostsSuccess = '[Streams] Load Posts Successfully',
     LoadPostsFail = '[Streams] Load Posts Failed',
+    CreatePost = '[Streams] Create Post]',
+    CreatePostSuccess = '[Streams] Create Post Successfully]',
+    CreatePostFail = '[Streams] Create Post Failed]'
 }
 
 /**
@@ -24,7 +27,25 @@ export class LoadPostsFail implements Action {
     constructor(public payload: any) { }
 }
 
+export class CreatePost implements Action {
+    readonly type = PostsActionTypes.CreatePost;
+    constructor(public payload: any) { }
+}
+
+export class CreatePostSuccess implements Action {
+    readonly type = PostsActionTypes.CreatePostSuccess;
+    constructor(public payload: any) { }
+}
+
+export class CreatePostFail implements Action {
+    readonly type = PostsActionTypes.CreatePostFail;
+    constructor(public payload: any) { }
+}
+
 export type PostsListActionsUnion =
     | LoadPosts
     | LoadPostsSuccess
     | LoadPostsFail
+    | CreatePost
+    | CreatePostSuccess
+    | CreatePostFail

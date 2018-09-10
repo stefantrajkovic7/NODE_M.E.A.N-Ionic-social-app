@@ -1,13 +1,19 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
+import { reducers } from './posts/store';
 import { StreamsComponent } from './streams.component';
 import { StreamsRoutingModule } from './streams-routing.module';
 import { ToolbarComponent } from '../components/toolbar.component';
 import { SideComponent } from './components/side.component';
 import { PostFormComponent } from './posts/post-form.component';
 import { PostsListComponent } from './components/posts-list.component';
+import { PostService } from './posts/services/post.service';
+import { PostGuard } from './posts/services/post.guard';
+import { PostEffects } from './posts/store/post.effects';
 
 @NgModule({
   imports: [
@@ -15,25 +21,8 @@ import { PostsListComponent } from './components/posts-list.component';
     ReactiveFormsModule,
     FormsModule,
     StreamsRoutingModule,
-
-    /**
-     * StoreModule.forFeature is used for composing state
-     * from feature modules. These modules can be loaded
-     * eagerly or lazily and will be dynamically added to
-     * the existing state.
-     */
-    // StoreModule.forFeature('surveys', reducers),
-
-    /**
-     * Effects.forFeature is used to register effects
-     * from feature modules. Effects can be loaded
-     * eagerly or lazily and will be started immediately.
-     *
-     * All Effects will only be instantiated once regardless of
-     * whether they are registered once or multiple times.
-     */
-    // EffectsModule.forFeature([SurveysEffects]),
-
+    StoreModule.forFeature('posts', reducers),
+    EffectsModule.forFeature([PostEffects])
   ],
   declarations: [
     StreamsComponent,
@@ -42,7 +31,10 @@ import { PostsListComponent } from './components/posts-list.component';
     PostsListComponent,
     ToolbarComponent
   ],
-  providers: []
+  providers: [
+    PostService,
+    PostGuard
+  ]
 })
 export class StreamsModule {
 }
