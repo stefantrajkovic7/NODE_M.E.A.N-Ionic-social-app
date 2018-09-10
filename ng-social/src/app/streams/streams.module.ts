@@ -6,7 +6,7 @@ import { StreamsComponent } from './streams.component';
 import { StreamsRoutingModule } from './streams-routing.module';
 import { ToolbarComponent } from '../components/toolbar.component';
 import { SideComponent } from './components/side.component';
-import { PostFormComponent } from './components/post-form.component';
+import { PostFormComponent } from './posts/post-form.component';
 import { PostsListComponent } from './components/posts-list.component';
 
 @NgModule({
