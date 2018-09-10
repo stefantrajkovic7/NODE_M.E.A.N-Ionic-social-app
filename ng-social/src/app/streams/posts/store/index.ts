@@ -1,9 +1,9 @@
 import {
+    select,
     createSelector,
     createFeatureSelector,
     ActionReducerMap,
   } from '@ngrx/store';
-  import '@ngrx/core/add/operator/select';
   
   import * as fromPosts from './post.reducer';
   import * as fromRoot from '../../../reducers';
