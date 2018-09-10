@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
 
 import { reducers } from './posts/store';
 import { StreamsComponent } from './streams.component';
@@ -18,6 +19,7 @@ import { PostEffects } from './posts/store/post.effects';
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     StreamsRoutingModule,
@@ -36,5 +38,4 @@ import { PostEffects } from './posts/store/post.effects';
     PostGuard
   ]
 })
-export class StreamsModule {
-}
+export class StreamsModule {}

@@ -2,9 +2,14 @@
     <div class="col s12 m12 l10">
         <div class="card postDiv">
             <div class="card-content">
-                <form>
+                <form novalidate [formGroup]="postForm">
                     <div class="formDiv">
-                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <textarea formControlName="post" id="textarea1" class="materialize-textarea"></textarea>
+                            <span class="help-block" *ngIf="(postForm.get('post').touched || postForm.get('post').dirty) && postForm.get('post').errors">
+                                <span *ngIf="postForm.get('post').errors.required">
+                                Post is required
+                                </span>
+                            </span>
                         <div class="file-field input-field">
                             <div class="row">
                                 <div class="col s6">
@@ -20,7 +25,7 @@
                                     </div>
                                 </div>
                                 <div class="col s6">
-                                    <button class="btn postBtn">
+                                    <button (click)="createPost()" class="btn postBtn">
                                         Post
                                     </button>
                                 </div>
