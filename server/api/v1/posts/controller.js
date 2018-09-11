@@ -1,4 +1,5 @@
 const Post = require('../../../models/Post');
+const User = require('../../../models/User');
 const keys = require('../../../config/keys');
 const Joi = require('joi');
 const HttpStatus = require('http-status-codes');
@@ -21,10 +22,25 @@ exports.create = (req, res) => {
     };
 
     Post.create(body)
-        .then(post => {
+        .then(async post => {
+            await User.update(
+                {
+                    _id: req.user._id
+                },
+                {
+                    $push: {
+                        posts: {
+                            postId: post._id,
+                            post: req.body.post,
+                            created: new Date()
+                        }
+                    }
+                }
+            );
             res.status(HttpStatus.OK).json({ message: 'Success', post })
         })
         .catch(err => {
+            console.log(err)
             res
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .json({ message: 'Error occured' });
