@@ -4,6 +4,7 @@ const Joi = require('joi');
 const HttpStatus = require('http-status-codes');
 const helper = require('../../../helpers');
 
-exports.create = async (req, res) => {
-
+exports.create = (req, res) => {
+    console.log(req.cookies);
+    console.log(req.user)
 }

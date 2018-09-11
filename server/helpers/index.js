@@ -1,7 +1,8 @@
 const Joi = require('joi');
 
 exports.validateRegistration = Joi.object().keys({
-    username: Joi.string()
+    username: Joi
+        .string()
         .min(5)
         .max(10)
         .required(),
@@ -9,7 +10,8 @@ exports.validateRegistration = Joi.object().keys({
         .string()
         .email()
         .required(),
-    password: Joi.string()
+    password: Joi
+        .string()
         .min(5)
         .required() 
 });

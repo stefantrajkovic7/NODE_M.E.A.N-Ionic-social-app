@@ -6,7 +6,9 @@ import { Actions, Effect, ofType  } from '@ngrx/effects';
 import {
   PostsActionTypes,
   PostsListActionsUnion,
-  CreatePost
+  CreatePost,
+  CreatePostSuccess,
+  CreatePostFail
 } from './post.actions';
 
 import {catchError, map, switchMap, retry} from 'rxjs/operators';
@@ -22,6 +24,21 @@ export class PostEffects {
     private postService: PostService,
     private router: Router,
   ) {}
+
+  @Effect()
+  register$: Observable<Action> = this.actions
+    .ofType(PostsActionTypes.CreatePost)
+    .pipe(
+      map((action: any) => action.payload),
+      switchMap(payload => {
+        return this.postService.createPost(payload)
+          .pipe(
+            retry(3),
+            map(post => new CreatePostSuccess({ payload: post })),
+            catchError(error => of(new CreatePostFail({message: error})))
+          )
+      })
+    );
     
 
 }
