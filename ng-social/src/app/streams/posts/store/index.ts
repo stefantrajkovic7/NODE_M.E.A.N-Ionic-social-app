@@ -1,37 +1,11 @@
-import {
-    select,
-    createSelector,
-    createFeatureSelector,
-    ActionReducerMap,
-  } from '@ngrx/store';
-  
-  import * as fromPosts from './post.reducer';
-  import * as fromRoot from '../../../reducers';
-  
-  export interface PostsState {
-    posts: fromPosts.State;
-  }
-  
-  export interface State extends fromRoot.State {
-    posts: PostsState;
-  }
-  
-  export const reducers: ActionReducerMap<PostsState> = {
-    posts: fromPosts.reducer,
-  };
-  
-  export const getPostsState = createFeatureSelector<PostsState>('posts');
-  
-  export const getPostsEntitiesState = createSelector(
-    getPostsState,
-    state => state.posts
-  );
-  
-  export const {
-    selectEntities: getPostsListEntities,
-    selectAll: getAllPosts,
-    selectTotal: getTotalPosts,
-  } = fromPosts.adapter.getSelectors(getPostsEntitiesState);
+import { createSelector } from '@ngrx/store';
+
+export const selectPostsState = state => state.posts;
+
+// export const getLoading = createSelector(
+//   selectAuthState,
+//   auth => auth.loading
+// );
   
   /**
    * Some selector functions create joins across parts of state. This selector

@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 
-import { reducers } from './posts/store';
+import { reducer } from './posts/store/post.reducer';
 import { StreamsComponent } from './streams.component';
 import { StreamsRoutingModule } from './streams-routing.module';
 import { ToolbarComponent } from '../components/toolbar.component';
@@ -23,7 +23,7 @@ import { PostEffects } from './posts/store/post.effects';
     ReactiveFormsModule,
     FormsModule,
     StreamsRoutingModule,
-    StoreModule.forFeature('posts', reducers),
+    StoreModule.forFeature('posts', reducer),
     EffectsModule.forFeature([PostEffects])
   ],
   declarations: [
