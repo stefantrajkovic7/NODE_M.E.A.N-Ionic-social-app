@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { AuthComponent } from './core/auth/auth.component';
 import { AuthGuard } from './core/services/auth.guard';
 
@@ -11,6 +11,7 @@ const routes: Routes = [
   {
     path: 'streams',
     loadChildren: './streams/streams.module#StreamsModule',
+    data: { preload: true },
     canActivate: [AuthGuard]
   }
 ];
@@ -21,4 +22,10 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor(private router: Router) {
+    router.events.subscribe(event => {
+
+    });
+  }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Logout } from '../core/store/actions';
 
@@ -7,9 +7,14 @@ import { Logout } from '../core/store/actions';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
+  @Input() userData: any;
 
   constructor(private store: Store<any>) {}
+
+  ngOnInit() {
+    console.log(this.userData + 'USEEER')
+  }
 
   logout() {
     this.store.dispatch(new Logout())

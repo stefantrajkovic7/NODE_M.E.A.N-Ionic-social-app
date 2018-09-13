@@ -25,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomRouterStateSerializer } from './utils/router-state-serializer';
 import { AuthGuard } from './core/services/auth.guard';
 import { AuthCookieService } from './core/services/auth-cookie.service';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AuthCookieService } from './core/services/auth-cookie.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule, 
+    CoreModule,
     StoreModule.forRoot(reducers, { metaReducers }),
 
     /**
@@ -74,7 +76,7 @@ import { AuthCookieService } from './core/services/auth-cookie.service';
      *
      * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
      */
-    EffectsModule.forRoot([CoreEffects]),
+    EffectsModule.forRoot([]),
 
     /**
      * `provideDB` sets up @ngrx/db with the provided schema and makes the Database

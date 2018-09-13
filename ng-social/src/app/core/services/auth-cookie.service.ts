@@ -6,7 +6,6 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AuthCookieService {
 
-
     constructor(public cookieService: CookieService) {}
 
     setToken(token) {
@@ -21,7 +20,7 @@ export class AuthCookieService {
         this.cookieService.delete('frenzy_token')
     }
 
-    getPayload() {
+    getUser() {
         const token = this.getToken();
         let payload;
 

@@ -1,20 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Injector } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+
 import { AuthCookieService } from '../core/services/auth-cookie.service';
+import * as AuthListActions from '../core/store/actions';
+import * as fromAuth from '../core/store';
+import { AppComponentBase } from '../app-component-base';
 
 @Component({
   selector: 'app-streams',
   templateUrl: './streams.component.html',
-  styleUrls: ['./streams.component.css']
+  styleUrls: ['./streams.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StreamsComponent implements OnInit {
+export class StreamsComponent extends AppComponentBase implements OnInit {
+  userData$: Observable<any>;
 
-  constructor(private auth: AuthCookieService) { }
+  constructor(injector: Injector, public store: Store<any>) {
+    super(injector);
+    this.userData$ = store.pipe(select(fromAuth.isAuthenticated));
+    // this.store.dispatch(new AuthListActions.LoadUser());
+
+    
+  }
 
   ngOnInit() {
-    
-    const token = this.auth.getPayload()
+      
+    // this.userData$.subscribe( data => console.log(data + 'SSSSSS'))
+    // const token = this.auth.getUser()
 
-    console.log(token)
+    // console.log(token)
     
   }
 

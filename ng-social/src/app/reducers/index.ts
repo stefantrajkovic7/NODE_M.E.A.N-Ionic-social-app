@@ -1,14 +1,10 @@
 import {
     ActionReducerMap,
-    createSelector,
-    createFeatureSelector,
     ActionReducer,
     MetaReducer,
   } from '@ngrx/store';
   import { environment } from '../../environments/environment';
   import * as fromRouter from '@ngrx/router-store';
-  import * as fromAuth from '../core/store';
-  import * as fromAuthReduce from '../core/store/reducers';
   
   /**
    * storeFreeze prevents state from being mutated. When mutation occurs, an
@@ -30,7 +26,7 @@ import { RouterStateUrl } from '../utils/router-state-serializer';
    * our top level state interface is just a map of keys to inner state types.
    */
   export interface State {
-
+    router: fromRouter.RouterReducerState<RouterStateUrl>;
   }
   
   /**
@@ -39,8 +35,7 @@ import { RouterStateUrl } from '../utils/router-state-serializer';
    * and the current or initial state and return a new immutable state.
    */
   export const reducers: ActionReducerMap<any> = {
-    auth: fromAuthReduce.reducer,
-    router: fromRouter.routerReducer,
+    router: fromRouter.routerReducer
   };
   
   // console.log all actions
@@ -61,6 +56,3 @@ import { RouterStateUrl } from '../utils/router-state-serializer';
   export const metaReducers: MetaReducer<State>[] = !environment.production
     ? [logger, storeFreeze]
     : [];
-
-
-    export const getAuthState = createFeatureSelector<fromAuth.State>('auth');

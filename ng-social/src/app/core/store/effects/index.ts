@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType  } from '@ngrx/effects';
@@ -12,6 +12,8 @@ import {
   Login,
   LoginSuccess,
   LoginFail,
+  LoadUserSuccess,
+  LoadUserFail,
 } from '../actions';
 
 import { User } from '../../models';
@@ -29,7 +31,7 @@ export class CoreEffects {
   constructor(
     private actions: Actions,
     private authService: AuthService,
-    private cookieService: AuthCookieService,
+    @Inject(AuthCookieService) private cookieService: AuthCookieService,
     private router: Router,
   ) {}
 
@@ -70,7 +72,8 @@ export class CoreEffects {
             catchError(error => of(new LoginFail({message: error})))
           )
       })
-    ); 
+    );
+    
     
   @Effect({ dispatch: false })
   logOut$: Observable<any> = this.actions.pipe(
