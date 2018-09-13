@@ -1,4 +1,4 @@
-// const middleware = require("../../../middlewares");
+const middleware = require("../../../middleware");
 
 const express = require('express');
 const router = express.Router({ mergeParams: true });
@@ -6,6 +6,6 @@ const controller = require('./controller');
 
 router.post('/register', controller.create);
 router.post('/login', controller.find);
-// router.get('/current', middleware.authenticate, controller.current);
+router.get('/user/:id', middleware.authenticate, controller.getUser);
 
 module.exports = router;

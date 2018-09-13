@@ -99,3 +99,10 @@ exports.find = async (req, res) => {
         })
         .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
 }
+
+exports.getUser = (req, res) => {
+    User
+        .findById(req.params.id)
+        .then(user => res.json(user))
+        .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
+};
