@@ -6,7 +6,10 @@ export enum PostsActionTypes {
     LoadPostsFail = '[Streams] Load Posts Failed',
     CreatePost = '[Streams] Create Post]',
     CreatePostSuccess = '[Streams] Create Post Successfully]',
-    CreatePostFail = '[Streams] Create Post Failed]'
+    CreatePostFail = '[Streams] Create Post Failed]',
+    LoadUser = '[Streams] Load User',
+    LoadUserSuccess = '[Streams] Load User Success',
+    LoadUserFail = '[Streams] Load User Failed',
 }
 
 /**
@@ -42,6 +45,24 @@ export class CreatePostFail implements Action {
     constructor(public payload: any) { }
 }
 
+export class LoadUser implements Action {
+    readonly type = PostsActionTypes.LoadUser;
+  
+    constructor(public payload: any) { }
+  }
+  
+  export class LoadUserSuccess implements Action {
+    readonly type = PostsActionTypes.LoadUserSuccess;
+  
+    constructor(public payload: any) { }
+  }
+  
+  export class LoadUserFail implements Action {
+    readonly type = PostsActionTypes.LoadUserFail;
+  
+    constructor(public payload: any) { }
+  }
+
 export type PostsListActionsUnion =
     | LoadPosts
     | LoadPostsSuccess
@@ -49,3 +70,6 @@ export type PostsListActionsUnion =
     | CreatePost
     | CreatePostSuccess
     | CreatePostFail
+    | LoadUser
+    | LoadUserSuccess
+    | LoadUserFail

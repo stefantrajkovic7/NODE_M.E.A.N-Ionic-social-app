@@ -36,19 +36,6 @@ export function reducer(
       });
     }
 
-    case AuthActionTypes.LoadUser: {
-      return Object.assign({}, state, {
-        loading: true
-      });
-    }
-
-    case AuthActionTypes.LoadUserSuccess: {
-      return Object.assign({}, state, {
-        loading: false,
-        user: action.payload
-      });
-    }
-
     case AuthActionTypes.Login: {
       return Object.assign({}, state, {
         loading: true

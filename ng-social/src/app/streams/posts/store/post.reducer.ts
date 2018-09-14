@@ -33,6 +33,19 @@ export function reducer(
       };
     }
 
+    case PostsActionTypes.LoadUser: {
+      return Object.assign({}, state, {
+        loading: true
+      });
+    }
+
+    case PostsActionTypes.LoadUserSuccess: {
+      return Object.assign({}, state, {
+        loading: false,
+        user: action.payload
+      });
+    }
+
     default: {
       return state;
     }
