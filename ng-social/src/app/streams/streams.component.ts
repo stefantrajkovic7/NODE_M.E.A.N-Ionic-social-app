@@ -18,7 +18,7 @@ export class StreamsComponent extends AppComponentBase implements OnInit {
 
   constructor(injector: Injector, public store: Store<any>) {
     super(injector);
-    this.userData$ = store.pipe(select(fromAuth.isAuthenticated));
+    this.userData$ = store.pipe(select(fromAuth.getUser));
     // this.store.dispatch(new AuthListActions.LoadUser());
 
     

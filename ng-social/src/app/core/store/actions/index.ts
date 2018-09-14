@@ -59,9 +59,6 @@ export type AuthActionsUnion =
   | Register
   | RegisterSuccess
   | RegisterFail
-  | LoadUser
-  | LoadUserSuccess
-  | LoadUserFail
   | Login
   | LoginSuccess
   | LoginFail

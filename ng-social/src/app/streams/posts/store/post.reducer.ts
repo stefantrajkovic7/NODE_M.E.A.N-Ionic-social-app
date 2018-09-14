@@ -6,11 +6,13 @@ import {
 export interface State {
   loaded: boolean;
   loading: boolean;
+  user: any;
 }
 
 const initialState: State = {
   loaded: false,
-  loading: false
+  loading: false,
+  user: null
 };
 
 export function reducer(
@@ -51,7 +53,3 @@ export function reducer(
     }
   }
 }
-
-export const getLoaded = (state: State) => state.loaded;
-
-export const getLoading = (state: State) => state.loading;
