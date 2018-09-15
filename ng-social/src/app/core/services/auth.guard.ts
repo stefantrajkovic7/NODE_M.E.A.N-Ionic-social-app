@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, Router } from "@angular/router";
 import { Store, select } from "@ngrx/store";
-import { isAuthenticated } from "../store";
 import { Logout } from "../store/actions";
 import { take, tap, map } from 'rxjs/operators';
 import { AuthCookieService } from "./auth-cookie.service";
