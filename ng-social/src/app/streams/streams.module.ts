@@ -16,6 +16,7 @@ import { PostService } from './posts/services/post.service';
 import { PostGuard } from './posts/services/post.guard';
 import { PostEffects } from './posts/store/post.effects';
 import { StreamsGuard } from './streams.guard';
+import { PostComponent } from './components/post.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { StreamsGuard } from './streams.guard';
     PostFormComponent,
     SideComponent,
     PostsListComponent,
+    PostComponent,
     ToolbarComponent
   ],
   providers: [
