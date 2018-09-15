@@ -26,13 +26,6 @@ import { tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { AuthCookieService } from '../../services/auth-cookie.service';
 
-
-let val;
-
-const navigationExtras: NavigationExtras = {
-  queryParams: { 'param': val }
-};
-
 @Injectable()
 export class CoreEffects {
 
