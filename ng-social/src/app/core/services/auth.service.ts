@@ -22,4 +22,8 @@ export class AuthService {
         return this._http.post(`${environment.API_BASE_URL}users/login`, payload, options)
     }
 
+    getUser(id: any): Observable<any> {
+        return this._http.get(`${environment.API_BASE_URL}users/${id}`, options)
+    }
+
 }

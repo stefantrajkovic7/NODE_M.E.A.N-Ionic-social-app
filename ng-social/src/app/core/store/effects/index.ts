@@ -11,7 +11,10 @@ import {
   RegisterFail,
   Login,
   LoginSuccess,
-  LoginFail
+  LoginFail,
+  LoadUser,
+  LoadUserSuccess,
+  LoadUserFail
 } from '../actions';
 
 import { User } from '../../models';
@@ -82,6 +85,16 @@ export class CoreEffects {
     })
   );  
     
-    
+  @Effect()
+  loadSelectedUser$: Observable<Action> = this.actions
+    .ofType(AuthActionTypes.LoadUser)
+    .pipe(
+      map((action: LoadUser) => action.payload),
+      switchMap((payload: any) =>
+        this.authService.getUser(payload).pipe(retry(3),
+          map((result: any) => new LoadUserSuccess(result)),
+          catchError(error => of(new LoadUserFail(error)))
+        ))
+  );
 
 }

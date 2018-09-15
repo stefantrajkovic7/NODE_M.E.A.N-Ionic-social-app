@@ -7,8 +7,3 @@ export const getLoading = createSelector(
   posts => posts.loading
 );
   
-export const getUser = createSelector(
-  selectPostsState,
-  posts => posts.user
-);
-  

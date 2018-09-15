@@ -8,7 +8,10 @@ export enum AuthActionTypes {
     Login = '[Auth] Login Action',
     LoginSuccess = '[Auth] Login Success Action',
     LoginFail = '[Auth] Login Failed Action',
-    Logout = '[Auth] Logout Action'
+    Logout = '[Auth] Logout Action',
+    LoadUser = '[Auth] Load User',
+    LoadUserSuccess = '[Auth] Load User Success',
+    LoadUserFail = '[Auth] Load User Failed',
 }
 
 /**
@@ -55,6 +58,24 @@ export class Logout implements Action {
   readonly type = AuthActionTypes.Logout;
 }
 
+export class LoadUser implements Action {
+  readonly type = AuthActionTypes.LoadUser;
+
+  constructor(public payload: any) { }
+}
+
+export class LoadUserSuccess implements Action {
+  readonly type = AuthActionTypes.LoadUserSuccess;
+
+  constructor(public payload: any) { }
+}
+
+export class LoadUserFail implements Action {
+  readonly type = AuthActionTypes.LoadUserFail;
+
+  constructor(public payload: any) { }
+}
+
 export type AuthActionsUnion =
   | Register
   | RegisterSuccess
@@ -63,4 +84,7 @@ export type AuthActionsUnion =
   | LoginSuccess
   | LoginFail
   | Logout
+  | LoadUser
+  | LoadUserSuccess
+  | LoadUserFail
 

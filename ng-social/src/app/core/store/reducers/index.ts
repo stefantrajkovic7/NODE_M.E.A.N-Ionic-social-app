@@ -6,13 +6,11 @@ import {
 
 export interface State {
   loading: boolean;
-  authenticated: boolean;
   user: any;
 }
 
 const initialState: State = {
   loading: false,
-  authenticated: false,
   user: null
 };
 
@@ -54,6 +52,19 @@ export function reducer(
       return Object.assign({}, state, {
         authenticated: false,
         user: null
+      });
+    }
+
+    case AuthActionTypes.LoadUser: {
+      return Object.assign({}, state, {
+        loading: true
+      });
+    }
+
+    case AuthActionTypes.LoadUserSuccess: {
+      return Object.assign({}, state, {
+        loading: false,
+        user: action.payload
       });
     }
 
