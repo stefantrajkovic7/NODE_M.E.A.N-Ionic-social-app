@@ -8,7 +8,10 @@ import {
   PostsListActionsUnion,
   CreatePost,
   CreatePostSuccess,
-  CreatePostFail
+  CreatePostFail,
+  LoadUser,
+  LoadUserSuccess,
+  LoadUserFail
 } from './post.actions';
 
 import {catchError, map, switchMap, retry} from 'rxjs/operators';
@@ -26,18 +29,15 @@ export class PostEffects {
   ) {}
 
   @Effect()
-  register$: Observable<Action> = this.actions
-    .ofType(PostsActionTypes.CreatePost)
+  loadSelectedUser$: Observable<Action> = this.actions
+    .ofType(PostsActionTypes.LoadUser)
     .pipe(
-      map((action: any) => action.payload),
-      switchMap(payload => {
-        return this.postService.createPost(payload)
-          .pipe(
-            retry(3),
-            map(post => new CreatePostSuccess({ payload: post })),
-            catchError(error => of(new CreatePostFail({message: error})))
-          )
-      })
+      map((action: LoadUser) => action.payload),
+      switchMap((payload: any) =>
+        this.postService.getUser(payload).pipe(retry(3),
+          map((result: any) => new LoadUserSuccess(result)),
+          catchError(error => of(new LoadUserFail(error)))
+        ))
     );
     
 

@@ -54,5 +54,5 @@ import { RouterStateUrl } from '../utils/router-state-serializer';
    * that will be composed to form the root meta-reducer.
    */
   export const metaReducers: MetaReducer<State>[] = !environment.production
-    ? [logger, storeFreeze]
+    ? [logger]
     : [];

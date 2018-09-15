@@ -8,12 +8,12 @@ import { Logout } from '../core/store/actions';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  @Input() userData: any;
+  // @Input() userData: any;
 
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
-    console.log(this.userData + 'USEEER')
+    // console.log(this.userData.payload.user.username + 'USEEER')
   }
 
   logout() {

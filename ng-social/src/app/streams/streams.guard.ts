@@ -4,9 +4,9 @@ import { select, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap} from 'rxjs/operators';
 
-import { ServiceProxy, SurveyModel } from 'pulse-lib';
-import * as SurveyActions from '../../../core/store/surveys/surveys.actions';
-import * as fromSurveys from '../../../core/store/surveys';
+import * as PostActions from './posts/store/post.actions';
+import * as fromAuth from '../core/store';
+import { AuthCookieService } from '../core/services/auth-cookie.service';
 
 /**
  * Guards are hooks into the route resolution process, providing an opportunity
@@ -14,14 +14,18 @@ import * as fromSurveys from '../../../core/store/surveys';
  * to activate this route. Guards must return an observable of true or false.
  */
 @Injectable()
-export class SurveyExistsGuard implements CanActivate {
-  id: any;
+export class StreamsGuard implements CanActivate {
+  user: any;
 
   constructor(
-    private store: Store<fromSurveys.State>,
-    private serviceProxy: ServiceProxy,
+    private store: Store<any>,
+    private auth: AuthCookieService,
     private router: Router
-  ) { }
+  ) {
+     this.user =  this.auth.getUser()
+    // this.id = store.pipe(select(fromAuth.getUser)).subscribe(user => user.user._id);
+    // console.log(this.user.data._id + 'IDDDD')
+   }
 
   /**
    * This method tries to load a Survey with the given ID from the store
@@ -29,11 +33,10 @@ export class SurveyExistsGuard implements CanActivate {
    */
   getFromStoreOrApi(): Observable<any> {
     return this.store.pipe(
-      select(fromSurveys.getSelectedSurvey),
       tap(() => {
-        this.store.dispatch(new SurveyActions.LoadSurvey(id));
+        this.store.dispatch(new PostActions.LoadUser(this.user.data._id));
       }),
-      map(Survey => !!Survey),
+      map(User => !!User),
       catchError(() => {
         this.router.navigate(['/404']);
         return of(false);

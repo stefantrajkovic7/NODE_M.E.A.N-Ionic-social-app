@@ -11,9 +11,7 @@ import {
   RegisterFail,
   Login,
   LoginSuccess,
-  LoginFail,
-  LoadUserSuccess,
-  LoadUserFail,
+  LoginFail
 } from '../actions';
 
 import { User } from '../../models';
