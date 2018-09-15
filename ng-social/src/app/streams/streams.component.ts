@@ -18,19 +18,11 @@ export class StreamsComponent extends AppComponentBase implements OnInit {
 
   constructor(injector: Injector, public store: Store<any>) {
     super(injector);
-    // this.userData$ = store.pipe(select(fromAuth.getUser));
-    // this.store.dispatch(new AuthListActions.LoadUser());
+    this.userData$ = store.pipe(select(fromAuth.getUser));
 
     
   }
 
-  ngOnInit() {
-      
-    // this.userData$.subscribe( data => console.log(data + 'SSSSSS'))
-    // const token = this.auth.getUser()
-
-    // console.log(token)
-    
-  }
+  ngOnInit() {}
 
 }

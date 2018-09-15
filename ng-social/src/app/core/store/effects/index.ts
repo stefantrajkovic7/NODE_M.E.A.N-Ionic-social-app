@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { Actions, Effect, ofType  } from '@ngrx/effects';
 
 import {
@@ -25,6 +25,13 @@ import { tap } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth.service';
 import { AuthCookieService } from '../../services/auth-cookie.service';
+
+
+let val;
+
+const navigationExtras: NavigationExtras = {
+  queryParams: { 'param': val }
+};
 
 @Injectable()
 export class CoreEffects {
@@ -81,7 +88,7 @@ export class CoreEffects {
     ofType(AuthActionTypes.Logout),
     tap(() => {
       this.cookieService.deleteToken()
-      this.router.navigate(['/'])
+      window.location.replace("/");
     })
   );  
     
