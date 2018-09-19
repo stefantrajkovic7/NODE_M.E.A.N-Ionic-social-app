@@ -41,6 +41,23 @@ export class PostEffects {
       )
     )
   );
+
+  @Effect()
+  createPost$: Observable<Action> = this.actions
+    .ofType(PostsActionTypes.CreatePost)
+    .pipe(
+      map((action: any) => action.payload),
+      switchMap(payload => {
+        return this.postService.createPost(payload)
+          .pipe(
+            retry(3),
+            map(post => {
+              return new CreatePostSuccess({ payload: post })
+            }),
+            catchError(error => of(new CreatePostFail({message: error})))
+          )
+      })
+  );
     
 
 }
