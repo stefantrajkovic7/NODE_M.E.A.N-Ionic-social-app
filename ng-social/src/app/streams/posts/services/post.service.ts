@@ -17,7 +17,7 @@ export class PostService {
     }
 
     getPosts(): Observable<any> {
-        return this._http.get(`${environment.API_BASE_URL}posts/list`)
+        return this._http.get(`${environment.API_BASE_URL}posts/list`, options)
     }
 
 }

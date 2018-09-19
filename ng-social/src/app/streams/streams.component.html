@@ -8,7 +8,7 @@
 
         <div class="col s12 m8 l9">
             <app-post-form></app-post-form>
-            <app-post></app-post>
+            <app-posts-list [posts]="posts$ | async"></app-posts-list>
         </div>
     </div>
 </div>

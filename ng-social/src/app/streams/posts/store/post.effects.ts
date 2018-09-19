@@ -31,12 +31,12 @@ export class PostEffects {
 
   @Effect()
   loadPosts$: Observable<Action> = this.actions.ofType(PostsActionTypes.LoadPosts).pipe(
-    map((action: LoadPosts) => action.payload),
+    map((action: LoadPosts) => action),
     // switchMap((payload: number) => -- for pagination later ToDo
     switchMap(() =>
       this.postService.getPosts().pipe(
         retry(3),
-        map((result: any) => new LoadPostsSuccess(result)),
+        map((result: any) => new LoadPostsSuccess(result.posts)),
         catchError(error => of(new LoadPostsFail(error)))
       )
     )

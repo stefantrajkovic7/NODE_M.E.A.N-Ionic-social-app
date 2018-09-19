@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap} from 'rxjs/operators';
 
 import * as AuthActions from '../core/store/actions';
+import * as PostsActions from './posts/store/post.actions';
 import { AuthCookieService } from '../core/services/auth-cookie.service';
 
 @Injectable()
@@ -27,6 +28,7 @@ export class StreamsGuard implements CanActivate {
     return this.store.pipe(
       tap(() => {
         this.store.dispatch(new AuthActions.LoadUser(this.user.data._id));
+        this.store.dispatch(new PostsActions.LoadPosts());
       }),
       map(User => !!User),
       catchError(() => {
