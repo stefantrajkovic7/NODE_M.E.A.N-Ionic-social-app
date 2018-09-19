@@ -8,7 +8,10 @@ import {
   PostsListActionsUnion,
   CreatePost,
   CreatePostSuccess,
-  CreatePostFail
+  CreatePostFail,
+  LoadPosts,
+  LoadPostsSuccess,
+  LoadPostsFail
 } from './post.actions';
 
 import {catchError, map, switchMap, retry} from 'rxjs/operators';
@@ -24,6 +27,20 @@ export class PostEffects {
     private postService: PostService,
     private router: Router,
   ) {}
+
+
+  @Effect()
+  loadPosts$: Observable<Action> = this.actions.ofType(PostsActionTypes.LoadPosts).pipe(
+    map((action: LoadPosts) => action.payload),
+    // switchMap((payload: number) => -- for pagination later ToDo
+    switchMap(() =>
+      this.postService.getPosts().pipe(
+        retry(3),
+        map((result: any) => new LoadPostsSuccess(result)),
+        catchError(error => of(new LoadPostsFail(error)))
+      )
+    )
+  );
     
 
 }

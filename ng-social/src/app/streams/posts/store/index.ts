@@ -6,4 +6,9 @@ export const getLoading = createSelector(
   selectPostsState,
   posts => posts.loading
 );
+
+export const getPosts = createSelector(
+  selectPostsState,
+  posts => posts.posts
+);
   

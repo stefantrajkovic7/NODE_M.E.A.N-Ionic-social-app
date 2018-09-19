@@ -6,11 +6,13 @@ import {
 export interface State {
   loaded: boolean;
   loading: boolean;
+  posts: any;
 }
 
 const initialState: State = {
   loaded: false,
-  loading: false
+  loading: false,
+  posts: null
 };
 
 export function reducer(
@@ -29,6 +31,7 @@ export function reducer(
     case PostsActionTypes.LoadPostsSuccess: {
       return {
         ...state,
+        posts: action.payload,
         loading: false
       };
     }
