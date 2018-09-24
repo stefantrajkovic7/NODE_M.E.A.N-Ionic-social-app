@@ -10,6 +10,11 @@ const app = express();
 
 const UI_API_URL = 'http://localhost:4200';
 
+// Socket IO
+const server = require('http').createServer(app)
+const io = require('socket.io').listen(server);
+require('./socket/streams')(io);
+
 // Express Configuration
 app.use(morgan('dev'));
 app.use(cookieParser())
@@ -32,11 +37,6 @@ app.use(cors(options));
 // app.use(passport.initialize());
 // require('./services/passport')(passport);
 
-// Socket IO
-const server = require('http').createServer(app);
-const io = require('socket.io').listen(server);
-require('./socket/streams')(io);
-
 // API Routes
 require('./routes')(app);
 
@@ -46,4 +46,13 @@ mongoose
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.log(err));
 
-module.exports = app;
+// Server
+const port = process.env.PORT || 3000;
+server.listen(port, (err) => {
+
+    if (err) {
+        return console.log(err)
+    }
+
+    return console.log(`server is listening on ${port}`)
+});
