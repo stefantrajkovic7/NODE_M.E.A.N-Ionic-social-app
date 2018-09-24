@@ -2,11 +2,11 @@ import { Component, OnInit, ChangeDetectionStrategy, Injector } from '@angular/c
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import { AuthCookieService } from '../core/services/auth-cookie.service';
-import * as AuthListActions from '../core/store/actions';
-import * as fromAuth from '../core/store';
+import * as PostsActions from './posts/store/post.actions';
 import * as fromPosts from './posts/store';
 import { AppComponentBase } from '../app-component-base';
+
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-streams',
@@ -15,17 +15,21 @@ import { AppComponentBase } from '../app-component-base';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StreamsComponent extends AppComponentBase implements OnInit {
+  socket: any;
   userData$: Observable<any>;
-  posts$: Observable<any>;
+  posts$: any;
 
   constructor(injector: Injector, public store: Store<any>) {
     super(injector);
-    this.userData$ = store.pipe(select(fromAuth.getUser));
-    this.posts$ = store.pipe(select(fromPosts.getPosts));
+    this.socket = io('http://localhost:3000');
+    this.posts$ = this.store.pipe(select(fromPosts.getPosts))
+    this.socket.on('refreshPage', data => {
+      this.store.dispatch(new PostsActions.LoadPosts());
+    })
   }
 
   ngOnInit() {
-
+    
   }
 
 }

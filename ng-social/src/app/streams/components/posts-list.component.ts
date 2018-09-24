@@ -9,11 +9,9 @@ import * as moment from 'moment';
 export class PostsListComponent implements OnInit {
   @Input() posts: any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-    // console.log(this.posts ? this.posts.username : null + 'POSTS')
-  }
+  ngOnInit() {}
 
   realTime(time) {
     return moment(time).fromNow();

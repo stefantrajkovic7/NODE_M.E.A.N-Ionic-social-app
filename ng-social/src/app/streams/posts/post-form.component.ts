@@ -33,7 +33,7 @@ export class PostFormComponent {
 
     if (this.postForm.valid) {
       this.store.dispatch(new PostActions.CreatePost(data));
-      this.socket.emit('refresh', { data: 'this is a test' })
+      this.socket.emit('refresh', {})
     } else {
       this.postForm.controls['post'].markAsTouched();
     }
