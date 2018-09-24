@@ -32,6 +32,11 @@ app.use(cors(options));
 // app.use(passport.initialize());
 // require('./services/passport')(passport);
 
+// Socket IO
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
+require('./socket/streams')(io);
+
 // API Routes
 require('./routes')(app);
 
