@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-posts-list',
@@ -12,6 +13,10 @@ export class PostsListComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.posts ? this.posts.username : null + 'POSTS')
+  }
+
+  realTime(time) {
+    return moment(time).fromNow();
   }
 
 }
