@@ -101,3 +101,14 @@ exports.createComment = async (req, res) => {
         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Error occured', err });
     })
 }
+
+exports.find = async (req, res) => {
+    await Post.findOne({ _id: req.params.id })
+        .populate('user')
+        .populate('comments.userId')
+        .then(post => {
+            res.status(HttpStatus.OK).json({ message: 'Post found', post });
+        })
+        .catch(err => res.status(HttpStatus.NOT_FOUND).json({ message: 'Not Found', err }))
+
+}

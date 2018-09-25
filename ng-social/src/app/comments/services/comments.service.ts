@@ -15,4 +15,8 @@ export class CommentsService {
     createComment(payload: any): Observable<any> {
         return this._http.post(`${environment.API_BASE_URL}posts/create-comment`, payload, options)
     }
+
+    getPost(id: any): Observable<any> {
+        return this._http.get(`${environment.API_BASE_URL}posts/${id}`, options)
+    }
 }

@@ -6,11 +6,14 @@ export enum CommentsActionTypes {
     LoadCommentsFail = '[Comments] Load Comments Failed',
     CreateComment = '[Comments] Create Comment',
     CreateCommentSuccess = '[Comments] Created Comment Successfully',
-    CreateCommentFail = '[Comments] Create Comment Failed'
+    CreateCommentFail = '[Comments] Create Comment Failed',
+    LoadPost = '[Comments] Load Post',
+    LoadPostSuccess = '[Comments] Loaded Post Successfully',
+    LoadPostFail = '[Comments] Load Post Failed',
 }
 
 /**
- * POSTS Actions
+ * COMMENTS Actions
  */
 export class LoadComments implements Action {
     readonly type = CommentsActionTypes.LoadComments;
@@ -42,6 +45,21 @@ export class CreateCommentFail implements Action {
     constructor(public payload: any) { }
 }
 
+export class LoadPost implements Action {
+    readonly type = CommentsActionTypes.LoadPost;
+    constructor(public payload: any) { }
+}
+
+export class LoadPostSuccess implements Action {
+    readonly type = CommentsActionTypes.LoadPostSuccess;
+    constructor(public payload: any) { }
+}
+
+export class LoadPostFail implements Action {
+    readonly type = CommentsActionTypes.LoadPostFail;
+    constructor(public payload: any) { }
+}
+
 export type CommentsListActionsUnion =
     | LoadComments
     | LoadCommentsSuccess
@@ -49,3 +67,6 @@ export type CommentsListActionsUnion =
     | CreateComment
     | CreateCommentSuccess
     | CreateCommentFail
+    | LoadPost
+    | LoadPostSuccess
+    | LoadPostFail
