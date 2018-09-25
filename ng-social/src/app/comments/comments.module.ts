@@ -6,12 +6,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CommentsRoutingModule } from './comments-routing.module';
-// import { ToolbarComponent } from '../components/toolbar.component';
 import { CommentsComponent } from './comments.component';
 import { CommentsGuard } from './comments-guard';
 import { CommentsService } from './services/comments.service';
 import { CommentsEffects } from './store/comments.effects';
 import { reducer } from './store/comments.reducer';
+import { SharedModule } from '../components/shared.module';
 
 @NgModule({
   imports: [
@@ -19,13 +19,13 @@ import { reducer } from './store/comments.reducer';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule,
     CommentsRoutingModule,
     StoreModule.forFeature('comments', reducer),
     EffectsModule.forFeature([CommentsEffects])
   ],
   declarations: [
     CommentsComponent
-    // ToolbarComponent
   ],
   providers: [
     CommentsService,

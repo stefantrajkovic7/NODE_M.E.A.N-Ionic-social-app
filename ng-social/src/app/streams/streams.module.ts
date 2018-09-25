@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { reducer } from './posts/store/post.reducer';
 import { StreamsComponent } from './streams.component';
 import { StreamsRoutingModule } from './streams-routing.module';
-import { ToolbarComponent } from '../components/toolbar.component';
 import { SideComponent } from './components/side.component';
 import { PostFormComponent } from './posts/post-form.component';
 import { PostsListComponent } from './components/posts-list.component';
@@ -17,11 +16,13 @@ import { PostGuard } from './posts/services/post.guard';
 import { PostEffects } from './posts/store/post.effects';
 import { StreamsGuard } from './streams.guard';
 import { PostComponent } from './components/post.component';
+import { SharedModule } from '../components/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
+    SharedModule,
     ReactiveFormsModule,
     FormsModule,
     StreamsRoutingModule,
@@ -33,8 +34,7 @@ import { PostComponent } from './components/post.component';
     PostFormComponent,
     SideComponent,
     PostsListComponent,
-    PostComponent,
-    ToolbarComponent
+    PostComponent
   ],
   providers: [
     PostService,

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Injector } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Injector, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
@@ -14,7 +14,8 @@ import * as io from 'socket.io-client';
   styleUrls: ['./comments.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnInit, AfterViewInit {
+  toolbarElement: any;
   socket: any;
   userData$: Observable<any>;
   comments$: any;
@@ -26,7 +27,11 @@ export class CommentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.toolbarElement = document.querySelector('.nav-content');
+  }
+
+  ngAfterViewInit() {
+    this.toolbarElement.style.display = 'none';
   }
 
 }
