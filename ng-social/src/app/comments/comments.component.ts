@@ -1,0 +1,32 @@
+import { Component, OnInit, ChangeDetectionStrategy, Injector } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+
+import * as CommentsAction from './store/comments.actions';
+import * as fromComments from './store';
+import * as fromAuth from '../core/store';
+
+import * as io from 'socket.io-client';
+
+@Component({
+  selector: 'app-streams-comments',
+  templateUrl: './comments.component.html',
+  styleUrls: ['./comments.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class CommentsComponent implements OnInit {
+  socket: any;
+  userData$: Observable<any>;
+  comments$: any;
+
+  constructor(public store: Store<any>) {
+    this.socket = io('http://localhost:3000');
+    this.userData$ = store.pipe(select(fromAuth.getUser));
+    // this.comments$ = this.store.pipe(select(fromComments.getComments))
+  }
+
+  ngOnInit() {
+    
+  }
+
+}

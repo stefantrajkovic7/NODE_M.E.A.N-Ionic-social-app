@@ -5,6 +5,7 @@ import * as PostActions from '../posts/store/post.actions';
 import * as io from 'socket.io-client';
 
 import _ from 'lodash';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts-list',
@@ -16,7 +17,7 @@ export class PostsListComponent implements OnInit {
   @Input() posts: any;
   @Input() userData: any;
 
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<any>, private router: Router) {
     this.socket = io('http://localhost:3000');
   }
 
@@ -33,6 +34,10 @@ export class PostsListComponent implements OnInit {
   
   checkInLikesArray(arr, username) {
     return _.some(arr, { username: username })
+  }
+
+  openComment(post) {
+    this.router.navigate(['comments', post._id])
   }
 
 }

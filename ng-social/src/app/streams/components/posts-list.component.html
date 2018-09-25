@@ -1,4 +1,4 @@
-<ul class="collection" *ngFor="let post of posts">
+<ul class="collection col s12 m12 l10" *ngFor="let post of posts">
     <li class="collection-item avatar">
       <img src="http://placehold.it/50x50" alt="" class="circle">
       <span class="title">{{post.username}}</span>
@@ -27,7 +27,7 @@
                     <span class="iconSpan">
                         {{post.totalLikes}}
                     </span>
-                    <i class="material-icons lf pointer">chat</i>
+                    <i class="material-icons lf pointer" (click)="openComment(post)">chat</i>
                     <span class="iconSpan">
                         {{post.comments.length}}
                     </span>

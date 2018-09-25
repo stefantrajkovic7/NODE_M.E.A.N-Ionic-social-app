@@ -8,11 +8,19 @@ const routes: Routes = [
     path: '',
     component: AuthComponent
   },
+
   {
     path: 'streams',
     loadChildren: './streams/streams.module#StreamsModule',
     data: { preload: true },
     canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'comments/:id',
+    loadChildren: './comments/comments.module#CommentsModule',
+    data: { preload: true },
+    // canActivate: [AuthGuard]
   }
 ];
 
