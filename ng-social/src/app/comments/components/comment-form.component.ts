@@ -38,6 +38,7 @@ export class CommentFormComponent {
     if (this.commentForm.valid) {
       this.store.dispatch(new CommentsActions.CreateComment(data));
       // this.socket.emit('refresh', {})
+      this.commentForm.reset()
     } else {
       this.commentForm.controls['comment'].markAsTouched();
     }

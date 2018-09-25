@@ -3,7 +3,7 @@
         <form novalidate [formGroup]="commentForm">
             <div class="formDiv">
                 <textarea formControlName="comment" class="materialize-textarea"></textarea>
-                <button (click)="createComment()" class="btn postBtn">
+                <button (click)="createComment()" [disabled]="!commentForm.valid" class="btn postBtn">
                     Add Comment
                 </button>
             </div>
