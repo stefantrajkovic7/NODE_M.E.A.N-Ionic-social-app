@@ -1,0 +1,35 @@
+.postDiv {
+    background-color: #26a69a;
+  }
+  
+  form {
+    background-color: #fff;
+  }
+  
+  .formDiv {
+    margin: 0px 20px 0px 20px;
+    padding: 12px;
+  }
+  
+  .addImageBtn {
+    margin-bottom: 5px;
+  }
+  
+  .postBtn {
+    margin-bottom: 5px;
+  }
+  
+  .title {
+    font-weight: bold;
+    color: #26a69a;
+  }
+  
+  .time {
+    font-size: 14px;
+    color: #666565;
+  }
+  
+  .postComment {
+    font-size: 15px;
+  }
+  

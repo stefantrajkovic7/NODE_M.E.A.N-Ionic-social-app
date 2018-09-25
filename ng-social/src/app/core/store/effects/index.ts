@@ -82,6 +82,7 @@ export class CoreEffects {
     tap(() => {
       this.cookieService.deleteToken()
       window.location.replace("/");
+      this.router.navigate(['/'])
     })
   );  
     
