@@ -30,6 +30,7 @@
     "@types/socket.io-client": "^1.4.32",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
+    "lodash": "^4.17.11",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.22.2",
     "ngrx-store-freeze": "^0.2.4",

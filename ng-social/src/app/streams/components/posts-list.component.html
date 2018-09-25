@@ -16,11 +16,18 @@
                     <p>{{post.post}}</p>
                 </div>
                 <div class="card-action">
-                    <i (click)="likePost(post)" class="material-icons">thumb_up</i>
+                    <i 
+                        (click)="likePost(post)" 
+                        [ngClass]="(!checkInLikesArray(post.likes, userData.username)) 
+                            ? 'notLiked' 
+                            : 'liked'" 
+                        class="material-icons pointer">
+                        thumb_up
+                    </i>
                     <span class="iconSpan">
                         {{post.totalLikes}}
                     </span>
-                    <i class="material-icons lf">chat</i>
+                    <i class="material-icons lf pointer">chat</i>
                     <span class="iconSpan">
                         {{post.comments.length}}
                     </span>

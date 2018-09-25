@@ -2,3 +2,11 @@
     color: #26a69a;
     font-weight: bold;
 }
+
+.pointer {
+    cursor: pointer;
+}
+
+.liked {
+    color: #26a69a !important;
+}

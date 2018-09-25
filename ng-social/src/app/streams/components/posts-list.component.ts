@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import * as PostActions from '../posts/store/post.actions';
 import * as io from 'socket.io-client';
 
+import _ from 'lodash';
+
 @Component({
   selector: 'app-posts-list',
   templateUrl: './posts-list.component.html',
@@ -12,6 +14,7 @@ import * as io from 'socket.io-client';
 export class PostsListComponent implements OnInit {
   socket: any;
   @Input() posts: any;
+  @Input() userData: any;
 
   constructor(private store: Store<any>) {
     this.socket = io('http://localhost:3000');
@@ -26,6 +29,10 @@ export class PostsListComponent implements OnInit {
   likePost(post) {
     this.store.dispatch(new PostActions.AddLike(post));
     this.socket.emit('refresh', {})
+  }
+  
+  checkInLikesArray(arr, username) {
+    return _.some(arr, { username: username })
   }
 
 }
