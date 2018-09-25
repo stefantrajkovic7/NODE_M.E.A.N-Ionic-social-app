@@ -20,4 +20,8 @@ export class PostService {
         return this._http.get(`${environment.API_BASE_URL}posts/list`, options)
     }
 
+    addLike(payload: any): Observable<any> {
+        return this._http.post(`${environment.API_BASE_URL}posts/add-like`, payload, options)
+    }
+
 }

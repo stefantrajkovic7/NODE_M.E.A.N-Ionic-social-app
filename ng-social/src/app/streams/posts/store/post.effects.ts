@@ -11,7 +11,9 @@ import {
   CreatePostFail,
   LoadPosts,
   LoadPostsSuccess,
-  LoadPostsFail
+  LoadPostsFail,
+  AddLikeSuccess,
+  AddLikeFail
 } from './post.actions';
 
 import {catchError, map, switchMap, retry} from 'rxjs/operators';
@@ -27,7 +29,6 @@ export class PostEffects {
     private postService: PostService,
     private router: Router,
   ) {}
-
 
   @Effect()
   loadPosts$: Observable<Action> = this.actions.ofType(PostsActionTypes.LoadPosts).pipe(
@@ -55,6 +56,23 @@ export class PostEffects {
               return new CreatePostSuccess({ payload: post })
             }),
             catchError(error => of(new CreatePostFail({message: error})))
+          )
+      })
+  );
+
+  @Effect()
+  addLike$: Observable<Action> = this.actions
+    .ofType(PostsActionTypes.AddLike)
+    .pipe(
+      map((action: any) => action.payload),
+      switchMap(payload => {
+        return this.postService.addLike(payload)
+          .pipe(
+            retry(3),
+            map(like => {
+              return new AddLikeSuccess({ payload: like })
+            }),
+            catchError(error => of(new AddLikeFail({message: error})))
           )
       })
   );

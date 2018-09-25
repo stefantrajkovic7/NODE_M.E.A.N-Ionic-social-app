@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { Store } from '@ngrx/store';
+import * as PostActions from '../posts/store/post.actions';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-posts-list',
@@ -7,9 +10,12 @@ import * as moment from 'moment';
   styleUrls: ['./posts-list.component.css']
 })
 export class PostsListComponent implements OnInit {
+  socket: any;
   @Input() posts: any;
 
-  constructor() {}
+  constructor(private store: Store<any>) {
+    this.socket = io('http://localhost:3000');
+  }
 
   ngOnInit() {}
 
@@ -18,7 +24,8 @@ export class PostsListComponent implements OnInit {
   }
 
   likePost(post) {
-    console.log(post);
+    this.store.dispatch(new PostActions.AddLike(post));
+    this.socket.emit('refresh', {})
   }
 
 }
