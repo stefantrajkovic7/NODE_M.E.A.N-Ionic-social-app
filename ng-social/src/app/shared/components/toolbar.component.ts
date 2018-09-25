@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Logout } from '../core/store/actions';
+import { Logout } from '../../core/store/actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,10 +11,14 @@ import { Logout } from '../core/store/actions';
 export class ToolbarComponent implements OnInit {
   @Input() userData: any;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<any>, private router: Router) {}
 
   ngOnInit() {
     
+  }
+
+  goToUserSection() {
+    this.router.navigate(['/streams'])
   }
 
   logout() {

@@ -15,7 +15,6 @@ import { AuthComponent } from './core/auth/auth.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './core/auth/login/login.component';
 import { RegisterComponent } from './core/auth/register/register.component';
-import { FormInputComponent } from './shared/components/form-input/form-input.component';
 import { AuthService } from './core/services/auth.service';
 import { environment } from '../environments/environment';
 import { reducers, metaReducers } from './reducers';
@@ -31,7 +30,6 @@ import { CoreModule } from './core/core.module';
   declarations: [
     AppComponent,
     AuthComponent,
-    FormInputComponent,
     LoginComponent,
     RegisterComponent
   ],

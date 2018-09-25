@@ -11,7 +11,7 @@ import { CommentsGuard } from './comments-guard';
 import { CommentsService } from './services/comments.service';
 import { CommentsEffects } from './store/comments.effects';
 import { reducer } from './store/comments.reducer';
-import { SharedModule } from '../components/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
