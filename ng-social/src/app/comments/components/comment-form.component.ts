@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import * as io from 'socket.io-client';
 
 import * as CommentsActions from '../store/comments.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-comment-form',
@@ -13,9 +14,11 @@ import * as CommentsActions from '../store/comments.actions';
 export class CommentFormComponent {
   socket: any;
   commentForm: FormGroup;
+  postId: any;
 
-  constructor(private fb: FormBuilder, private store: Store<any>) {
+  constructor(private fb: FormBuilder, private store: Store<any>, private route: ActivatedRoute) {
     this.socket = io('http://localhost:3000');
+    this.postId = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
@@ -24,19 +27,20 @@ export class CommentFormComponent {
 
   commentInit() {
     this.commentForm = this.fb.group({
+      postId: [this.postId],
       comment: ['', Validators.required]
     })
   }
 
   createComment() {
-    // const data = this.postForm.value;
+    const data = this.commentForm.value;
 
-    // if (this.postForm.valid) {
-    //   this.store.dispatch(new PostActions.CreatePost(data));
-    //   this.socket.emit('refresh', {})
-    // } else {
-    //   this.postForm.controls['post'].markAsTouched();
-    // }
+    if (this.commentForm.valid) {
+      this.store.dispatch(new CommentsActions.CreateComment(data));
+      // this.socket.emit('refresh', {})
+    } else {
+      this.commentForm.controls['comment'].markAsTouched();
+    }
   }
 
 }

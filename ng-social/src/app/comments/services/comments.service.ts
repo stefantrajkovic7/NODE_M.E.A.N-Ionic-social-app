@@ -11,4 +11,8 @@ export const options = {
 @Injectable()
 export class CommentsService {
     constructor(private _http: HttpClient) {}
+
+    createComment(payload: any): Observable<any> {
+        return this._http.post(`${environment.API_BASE_URL}posts/create-comment`, payload, options)
+    }
 }

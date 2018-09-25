@@ -8,7 +8,9 @@ import {
   CommentsListActionsUnion,
   LoadComments,
   LoadCommentsSuccess,
-  LoadCommentsFail
+  LoadCommentsFail,
+  CreateCommentSuccess,
+  CreateCommentFail
 } from './comments.actions';
 
 import {catchError, map, switchMap, retry} from 'rxjs/operators';
@@ -37,5 +39,22 @@ export class CommentsEffects {
 //       )
 //     )
 //   );
+
+  @Effect()
+  createComment$: Observable<Action> = this.actions
+    .ofType(CommentsActionTypes.CreateComment)
+    .pipe(
+      map((action: any) => action.payload),
+      switchMap(payload => {
+        return this.commentsService.createComment(payload)
+          .pipe(
+            retry(3),
+            map(comment => {
+              return new CreateCommentSuccess({ payload: comment })
+            }),
+            catchError(error => of(new CreateCommentFail({message: error})))
+          )
+      })
+  );
 
 }

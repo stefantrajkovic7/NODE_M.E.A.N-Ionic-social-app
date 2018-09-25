@@ -79,3 +79,25 @@ exports.addLike = async (req, res) => {
         res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Error occured', err });
     })
 }
+
+exports.createComment = async (req, res) => {
+    const postId = req.body.postId;
+    await Post.update({
+        _id: postId
+    }, {
+        $push: { 
+            comments: {
+                userId: req.user._id,
+                username: req.user.username,
+                comment: req.body.comment,
+                createdAt: new Date()
+            }
+        }
+    })
+    .then(() => {
+        res.status(HttpStatus.OK).json({ message: 'Comment added to post' });
+    })
+    .catch(err => {
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Error occured', err });
+    })
+}
