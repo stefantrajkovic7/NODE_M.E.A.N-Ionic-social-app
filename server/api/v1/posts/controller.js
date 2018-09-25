@@ -58,3 +58,21 @@ exports.list = async (req, res) => {
         return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Error Ocurred', err });
     }
 }
+
+exports.addLike = async (req, res) => {
+    const postId = req.body._id;
+    await Post.update({
+        _id: postId
+    }, {
+        $push: { likes: {
+            username: req.user.username
+        }},
+        $inc: { totalLikes: 1 },
+    })
+    .then(() => {
+        res.status(HttpStatus.OK).json({ message: 'You liked the post' });
+    })
+    .catch(err => {
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Error occured', err });
+    })
+}

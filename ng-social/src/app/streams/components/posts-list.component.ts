@@ -17,4 +17,8 @@ export class PostsListComponent implements OnInit {
     return moment(time).fromNow();
   }
 
+  likePost(post) {
+    console.log(post);
+  }
+
 }

@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 
 import * as PostsActions from './posts/store/post.actions';
 import * as fromPosts from './posts/store';
+import * as fromAuth from '../core/store';
 import { AppComponentBase } from '../app-component-base';
 
 import * as io from 'socket.io-client';
@@ -22,6 +23,7 @@ export class StreamsComponent extends AppComponentBase implements OnInit {
   constructor(injector: Injector, public store: Store<any>) {
     super(injector);
     this.socket = io('http://localhost:3000');
+    this.userData$ = store.pipe(select(fromAuth.getUser));
     this.posts$ = this.store.pipe(select(fromPosts.getPosts))
     this.socket.on('refreshPage', data => {
       this.store.dispatch(new PostsActions.LoadPosts());
