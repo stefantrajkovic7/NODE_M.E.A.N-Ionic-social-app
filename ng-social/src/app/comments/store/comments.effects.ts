@@ -69,7 +69,7 @@ export class CommentsEffects {
         return this.commentsService.getPost(payload)
           .pipe(
             retry(3),
-            map(comment => new LoadPostSuccess({ payload: comment })),
+            map(post => new LoadPostSuccess(post)),
             catchError(error => of(new LoadPostFail({message: error})))
           )
       })

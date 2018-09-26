@@ -18,12 +18,13 @@ export class CommentsComponent implements OnInit, AfterViewInit {
   toolbarElement: any;
   socket: any;
   userData$: Observable<any>;
-  comments$: any;
+  post$: any;
 
   constructor(public store: Store<any>) {
     this.socket = io('http://localhost:3000');
     this.userData$ = store.pipe(select(fromAuth.getUser));
-    // this.comments$ = this.store.pipe(select(fromComments.getComments))
+    this.post$ = store.pipe(select(fromComments.getPost))
+    console.log(this.post$ + 'jjjj')
   }
 
   ngOnInit() {

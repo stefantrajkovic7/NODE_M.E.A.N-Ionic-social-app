@@ -12,6 +12,9 @@
                     <app-comment-form></app-comment-form>
                 </div>
             </div>
+            <div class="row">
+                <app-comments-list [post]="post$ | async"></app-comments-list>
+            </div>
         </div>
     </div>
 </div>

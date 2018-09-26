@@ -11,4 +11,9 @@ export const getComments = createSelector(
     selectCommentsState,
     comments => comments.comments
 );
+
+export const getPost = createSelector(
+    selectCommentsState,
+    comments => comments.post
+)
   

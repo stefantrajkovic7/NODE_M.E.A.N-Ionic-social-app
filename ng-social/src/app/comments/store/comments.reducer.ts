@@ -48,7 +48,7 @@ import {
     case CommentsActionTypes.LoadPostSuccess: {
       return {
         ...state,
-        post: action.payload,
+        post: action.payload.post,
         loading: false
       };
     }

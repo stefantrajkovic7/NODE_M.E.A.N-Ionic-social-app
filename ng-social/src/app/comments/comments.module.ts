@@ -13,6 +13,7 @@ import { CommentsEffects } from './store/comments.effects';
 import { reducer } from './store/comments.reducer';
 import { SharedModule } from '../shared/shared.module';
 import { CommentFormComponent } from './components/comment-form.component';
+import { CommentsListComponent } from './components/comments-list.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { CommentFormComponent } from './components/comment-form.component';
   ],
   declarations: [
     CommentsComponent,
+    CommentsListComponent,
     CommentFormComponent
   ],
   providers: [
