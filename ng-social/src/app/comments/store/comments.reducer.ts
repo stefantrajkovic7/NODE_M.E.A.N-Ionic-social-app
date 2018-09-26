@@ -7,12 +7,14 @@ import {
     loaded: boolean;
     loading: boolean;
     comments: any;
+    post: any;
   }
   
   const initialState: State = {
     loaded: false,
     loading: false,
-    comments: null
+    comments: null,
+    post: null
   };
   
   export function reducer(
@@ -35,6 +37,21 @@ import {
           loading: false
         };
       }
+
+      case CommentsActionTypes.LoadPost: {
+        return {
+          ...state,
+          loading: true
+        };
+    }
+
+    case CommentsActionTypes.LoadPostSuccess: {
+      return {
+        ...state,
+        post: action.payload,
+        loading: false
+      };
+    }
   
       default: {
         return state;

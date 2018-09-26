@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap} from 'rxjs/operators';
 
 import * as AuthActions from '../core/store/actions';
-// import * as PostsActions from './posts/store/post.actions';
+import * as CommentsActions from './store/comments.actions';
 import { AuthCookieService } from '../core/services/auth-cookie.service';
 
 @Injectable()
@@ -24,11 +24,11 @@ export class CommentsGuard implements CanActivate {
    * This method tries to load a Survey with the given ID from the store
    * if it is not in the store, returning dispatch a new load action.
    */
-  getFromStoreOrApi(): Observable<any> {
+  getFromStoreOrApi(id: any): Observable<any> {
     return this.store.pipe(
       tap(() => {
         this.store.dispatch(new AuthActions.LoadUser(this.user.data._id));
-        // this.store.dispatch(new PostsActions.LoadPosts());
+        this.store.dispatch(new CommentsActions.LoadPost(id));
       }),
       map(User => !!User),
       catchError(() => {
@@ -38,7 +38,7 @@ export class CommentsGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.getFromStoreOrApi().pipe(
+    return this.getFromStoreOrApi(route.params['id']).pipe(
       switchMap(() => of(true)),
       catchError(() => of(false)));
   }

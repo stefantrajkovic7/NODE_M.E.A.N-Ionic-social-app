@@ -10,13 +10,16 @@ import {
   LoadCommentsSuccess,
   LoadCommentsFail,
   CreateCommentSuccess,
-  CreateCommentFail
+  CreateCommentFail,
+  LoadPostFail,
+  LoadPostSuccess
 } from './comments.actions';
 
 import {catchError, map, switchMap, retry} from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CommentsService } from '../services/comments.service';
+import { LoadPostsSuccess } from '../../streams/posts/store/post.actions';
 
 @Injectable()
 export class CommentsEffects {
@@ -53,6 +56,21 @@ export class CommentsEffects {
               return new CreateCommentSuccess({ payload: comment })
             }),
             catchError(error => of(new CreateCommentFail({message: error})))
+          )
+      })
+  );
+
+  @Effect()
+  loadPost$: Observable<Action> = this.actions
+    .ofType(CommentsActionTypes.LoadPost)
+    .pipe(
+      map((action: any) => action.payload),
+      switchMap(payload => {
+        return this.commentsService.getPost(payload)
+          .pipe(
+            retry(3),
+            map(comment => new LoadPostSuccess({ payload: comment })),
+            catchError(error => of(new LoadPostFail({message: error})))
           )
       })
   );
