@@ -4,11 +4,13 @@ import { ToolbarComponent } from './components/toolbar.component';
 import { SideComponent } from './components/side.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
       CommonModule,
       HttpClientModule,
+      RouterModule,
       ReactiveFormsModule,
       FormsModule,
   ],
