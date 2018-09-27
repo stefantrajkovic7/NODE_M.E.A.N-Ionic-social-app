@@ -20,9 +20,7 @@ export class CommentsListComponent implements OnInit {
     this.socket = io('http://localhost:3000');
   }
 
-  ngOnInit() {
-      console.log(this.post + 'dddd')
-  }
+  ngOnInit() {}
 
   realTime(time) {
     return moment(time).fromNow();
