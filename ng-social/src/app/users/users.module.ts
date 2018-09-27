@@ -12,6 +12,7 @@ import { UsersComponent } from './users.component';
 import { UsersEffects } from './store/users.effects';
 import { UsersService } from './services/users.service';
 import { UsersGuard } from './users.guard';
+import { UserComponent } from './components/user.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { UsersGuard } from './users.guard';
     EffectsModule.forFeature([UsersEffects])
   ],
   declarations: [
-    UsersComponent
+    UsersComponent,
+    UserComponent
   ],
   providers: [
     UsersService,
