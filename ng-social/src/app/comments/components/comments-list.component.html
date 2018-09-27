@@ -1,8 +1,10 @@
-<ul class="collection col s12 m10">
-    <li class="collection-item avatar">
-        <img src="http://placehold.it/50x50">
-        <span class="title">{{post.username}}</span>
-        <p class="time">{{post.created}}</p>
-        <p class="postComment">{{post.comment}}</p>
-    </li>
-</ul>
+<span *ngIf="post">
+    <ul class="collection col s12 m10" *ngFor="let data of post.comments">
+        <li class="collection-item avatar">
+            <img class="circle" src="http://placehold.it/50x50">
+            <span class="title">{{data?.username}}</span>
+            <p class="time">{{data?.createdAt}}</p>
+            <p class="postComment">{{data?.comment}}</p>
+        </li>
+    </ul>
+</span>
