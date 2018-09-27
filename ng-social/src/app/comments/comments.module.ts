@@ -14,6 +14,7 @@ import { reducer } from './store/comments.reducer';
 import { SharedModule } from '../shared/shared.module';
 import { CommentFormComponent } from './components/comment-form.component';
 import { CommentsListComponent } from './components/comments-list.component';
+import { PostViewComponent } from './components/post-view.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { CommentsListComponent } from './components/comments-list.component';
     EffectsModule.forFeature([CommentsEffects])
   ],
   declarations: [
+    PostViewComponent,
     CommentsComponent,
     CommentsListComponent,
     CommentFormComponent
