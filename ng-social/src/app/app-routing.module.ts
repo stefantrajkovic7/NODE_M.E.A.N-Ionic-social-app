@@ -17,6 +17,13 @@ const routes: Routes = [
   },
 
   {
+    path: 'users',
+    loadChildren: './users/users.module#UsersModule',
+    data: { preload: true },
+    // canActivate: [AuthGuard]
+  },
+
+  {
     path: 'comments/:id',
     loadChildren: './comments/comments.module#CommentsModule',
     data: { preload: true },
