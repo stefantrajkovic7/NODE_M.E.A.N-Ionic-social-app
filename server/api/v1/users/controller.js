@@ -106,3 +106,14 @@ exports.getUser = (req, res) => {
         .then(user => res.json(user))
         .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
 };
+
+exports.getAllUsers = async (req, res) => {
+    await User.find({})
+        .populate('posts.postId')
+        .then(result => {
+            res.status(HttpStatus.OK).json({ message: 'All Users List', result });
+        })
+        .catch(err => {
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Error Occured', err })
+        });
+}
