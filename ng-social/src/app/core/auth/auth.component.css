@@ -22,7 +22,8 @@
 }
 
 .tabs .active {
-  background: #e1fcf9 !important;
+  background: #ffdbfd !important;
+  border-bottom: 1px solid black
 }
 
 .auth-cont {
