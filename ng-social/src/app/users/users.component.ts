@@ -20,11 +20,12 @@ export class UsersComponent implements OnInit, AfterViewInit {
   id: any;
   socket: any;
   userData$: Observable<any>;
+  users$: Observable<any>;
 
   constructor(public store: Store<any>, private users: UsersService) {
     this.socket = io('http://localhost:3000');
     this.userData$ = store.pipe(select(fromAuth.getUser));
-    // this.post$ = store.pipe(select(fromComments.getPost))
+    this.users$ = store.pipe(select(fromUsers.getAllUsers))
 
     // this.socket.on('refreshPage', data => {
     //   this.store.dispatch(new CommentsAction.LoadPost(this.id));
@@ -35,7 +36,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
     // this.toolbarElement = document.querySelector('.nav-content');
     // this.store.dispatch(new UsersAction.LoadUsers());
     this.users.getAllUsers().subscribe(data => {
-        console.log(data + 'jjj')
+        console.log(data.result[0].email + 'jjj')
     })
   }
 

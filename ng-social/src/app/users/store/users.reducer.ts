@@ -31,7 +31,7 @@ import {
       case UsersActionTypes.LoadUsersSuccess: {
         return {
             ...state,
-            users: action.payload,
+            users: action.payload.result,
             loading: false
         };
       }

@@ -28,7 +28,7 @@ export class UsersGuard implements CanActivate {
     return this.store.pipe(
       tap(() => {
         this.store.dispatch(new AuthActions.LoadUser(this.user.data._id));
-        // this.store.dispatch(new UsersAction.LoadUsers());
+        this.store.dispatch(new UsersAction.LoadUsers());
       }),
       map(User => !!User),
       catchError(() => {
