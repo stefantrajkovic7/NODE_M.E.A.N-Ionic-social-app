@@ -17,6 +17,10 @@ export class ToolbarComponent implements OnInit {
     
   }
 
+  get user() {
+    return this.userData.user ? this.userData.user.username : '';
+  }
+
   goToUserSection() {
     this.router.navigate(['/streams'])
   }

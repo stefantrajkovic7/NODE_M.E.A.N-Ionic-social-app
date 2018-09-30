@@ -24,8 +24,8 @@
             <div class="nav-div">
                 <img src="http://placehold.it/50x50" alt="" class="circle responsive-img">
             </div>
-            <h1 *ngIf="userData" class="profile-name">
-                {{userData.user.username}}
+            <h1 class="profile-name" *ngIf="userData?.user">
+                {{user}}
             </h1>
         </div>
     </div>

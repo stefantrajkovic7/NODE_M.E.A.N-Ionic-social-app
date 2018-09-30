@@ -25,6 +25,7 @@ export class StreamsGuard implements CanActivate {
    * if it is not in the store, returning dispatch a new load action.
    */
   getFromStoreOrApi(): Observable<any> {
+    this.user =  this.auth.getUser()
     return this.store.pipe(
       tap(() => {
         this.store.dispatch(new AuthActions.LoadUser(this.user.data._id));
