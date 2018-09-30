@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import _ from 'lodash';
 import { AuthCookieService } from '../../core/services/auth-cookie.service';
+import { Store } from '@ngrx/store';
+
+import * as UsersAction from '../store/users.actions';
 
 @Component({
   selector: 'app-user',
@@ -11,7 +14,7 @@ export class UserComponent implements OnInit {
   @Input() users: any;
   loggedInUser: any;
 
-  constructor(private auth: AuthCookieService) {}
+  constructor(private auth: AuthCookieService, private store: Store<any>) {}
 
   get usersList() {
     this.loggedInUser = this.auth.getUser()
@@ -22,7 +25,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {}
 
   follow(user) {
-    console.log(user)
+    this.store.dispatch(new UsersAction.FollowingAction(user));
   }
 
 }

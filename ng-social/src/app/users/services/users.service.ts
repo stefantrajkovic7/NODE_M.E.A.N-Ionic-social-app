@@ -12,11 +12,11 @@ export const options = {
 export class UsersService {
     constructor(private _http: HttpClient) {}
 
-    // createComment(payload: any): Observable<any> {
-    //     return this._http.post(`${environment.API_BASE_URL}posts/create-comment`, payload, options)
-    // }
-
     getAllUsers(): Observable<any> {
         return this._http.get(`${environment.API_BASE_URL}users`, options)
+    }
+
+    postFollow(payload: any): Observable<any> {
+        return this._http.post(`${environment.API_BASE_URL}users/follow`, payload, options)
     }
 }

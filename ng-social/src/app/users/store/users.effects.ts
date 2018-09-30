@@ -8,7 +8,9 @@ import {
   UsersListActionsUnion,
   LoadUsers,
   LoadUsersSuccess,
-  LoadUsersFail
+  LoadUsersFail,
+  FollowingActionSuccess,
+  FollowingActionFail
 } from './users.actions';
 
 import {catchError, map, switchMap, retry} from 'rxjs/operators';
@@ -35,6 +37,23 @@ export class UsersEffects {
         catchError(error => of(new LoadUsersFail(error)))
       )
     )
+  );
+
+  @Effect()
+  followingAction$: Observable<Action> = this.actions
+    .ofType(UsersActionTypes.FollowingAction)
+    .pipe(
+      map((action: any) => action.payload),
+      switchMap(payload => {
+        return this.usersService.postFollow(payload)
+          .pipe(
+            retry(3),
+            map(follow => {
+              return new FollowingActionSuccess({ payload: follow })
+            }),
+            catchError(error => of(new FollowingActionFail({message: error})))
+          )
+      })
   );
 
 }

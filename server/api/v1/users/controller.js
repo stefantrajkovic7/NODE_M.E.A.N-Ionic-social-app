@@ -100,16 +100,38 @@ exports.find = async (req, res) => {
         .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
 }
 
-exports.getUser = (req, res) => {
-    User
-        .findById(req.params.id)
-        .then(user => res.json(user))
+exports.getUser = async (req, res) => {
+    await User
+        .findOne({ _id: req.params.id })
+        .populate('posts.postId')
+        .populate('following.userFollowed')
+        .populate('followers.follower')
+        .then(user => res.status(HttpStatus.OK).json({ message: 'Success', user }))
+        .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
+};
+
+// exports.getUser = (req, res) => {
+//     User
+//         .findById(req.params.id)
+//         .then(user => res.json(user))
+//         .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
+// };
+
+exports.getUserByName = async (req, res) => {
+    await User
+        .findOne({ username: req.params.username })
+        .populate('posts.postId')
+        .populate('following.userFollowed')
+        .populate('followers.follower')
+        .then(user => res.status(HttpStatus.OK).json({ message: 'Success', user }))
         .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
 };
 
 exports.getAllUsers = async (req, res) => {
     await User.find({})
         .populate('posts.postId')
+        .populate('following.userFollowed')
+        .populate('followers.follower')
         .then(result => res.status(HttpStatus.OK).json({ message: 'All Users List', result }))
         .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Error Occured', err }));
 }
