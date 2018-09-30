@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {}
 
   follow(user) {
-    this.store.dispatch(new UsersAction.FollowingAction(user));
+    this.store.dispatch(new UsersAction.FollowingAction(user._id));
   }
 
 }

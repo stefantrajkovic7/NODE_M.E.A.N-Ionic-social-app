@@ -141,7 +141,7 @@ exports.followUser = (req, res) => {
         await User.update(
             {
                 _id: req.user._id,
-                "following.userFollowed": { $ne: req.body.userId }
+                "following.userFollowed": { $ne: req.body.userFollowed }
             },
             {
                 $push: {
@@ -154,7 +154,7 @@ exports.followUser = (req, res) => {
 
         await User.update(
             {
-                _id: req.user._id,
+                _id: req.body.userFollowed,
                 "following.follower": { $ne: req.user._id }
             },
             {

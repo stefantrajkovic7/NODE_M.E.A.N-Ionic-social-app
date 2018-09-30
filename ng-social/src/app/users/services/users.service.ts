@@ -16,7 +16,7 @@ export class UsersService {
         return this._http.get(`${environment.API_BASE_URL}users`, options)
     }
 
-    postFollow(payload: any): Observable<any> {
-        return this._http.post(`${environment.API_BASE_URL}users/follow`, payload, options)
+    postFollow(userFollowed): Observable<any> {
+        return this._http.post(`${environment.API_BASE_URL}users/follow`, {userFollowed}, options)
     }
 }
