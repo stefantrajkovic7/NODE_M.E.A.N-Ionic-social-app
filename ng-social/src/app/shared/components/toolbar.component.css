@@ -1,5 +1,5 @@
 nav {
-    background-color: #26a69a;
+    background-color: #4e006e;
   }
   
   .brand-logo {
@@ -8,7 +8,7 @@ nav {
   }
   
   .navDiv {
-    background-color: #26a69a;
+    background-color: #4e006e;
   }
   
   .nav-content {
@@ -80,21 +80,21 @@ nav {
   }
   
   .title {
-    color: #26a69a;
+    color: #4e006e;
     margin: 0px !important;
     padding: 0px !important;
     font-weight: normal;
   }
   
   .isRead {
-    color: #26a69a;
+    color: #4e006e;
     margin: 0px !important;
     padding: 0px !important;
     font-weight: normal;
   }
   
   .unread {
-    color: #26a69a;
+    color: #4e006e;
     margin: 0px !important;
     padding: 0px !important;
     font-weight: bold;
@@ -110,7 +110,7 @@ nav {
   }
   
   .material-icons {
-    color: #26a69a !important;
+    color: #4e006e !important;
     cursor: pointer;
   }
   

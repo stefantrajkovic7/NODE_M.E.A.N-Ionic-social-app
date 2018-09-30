@@ -3,7 +3,7 @@
 }
 
 .text-title {
-  color: #26a69a !important;
+  color: #4e006e !important;
   font-weight: bold;
   font-style: italic;
   text-align: center;
@@ -12,11 +12,11 @@
 }
 
 .bg-auth {
-  background: #26a69a;
+  background: #4e006e;
 }
 
 .tabs a {
-  color: #26a69a;
+  color: #4e006e;
   font-weight: bold;
   font-size: 16px;
 }

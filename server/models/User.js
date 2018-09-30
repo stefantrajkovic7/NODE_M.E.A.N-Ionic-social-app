@@ -10,6 +10,9 @@ const userSchema = mongoose.Schema({
             post: { type: String },
             created: { type: Date, default: Date.now() }
         }
+    ],
+    following: [
+        {  }
     ]
 })
 

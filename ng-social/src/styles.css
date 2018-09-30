@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-.tabs .indicator {
-    background-color: #26a69a !important;
+.tabs .indicator .btn, .btn-large, .btn-small {
+    background-color: #4e006e !important;
 }
 
 .help-block span {
