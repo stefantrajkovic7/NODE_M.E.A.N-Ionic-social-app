@@ -113,3 +113,39 @@ exports.getAllUsers = async (req, res) => {
         .then(result => res.status(HttpStatus.OK).json({ message: 'All Users List', result }))
         .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Error Occured', err }));
 }
+
+exports.followUser = (req, res) => {
+    const following = async () => {
+        await User.update(
+            {
+                _id: req.user._id,
+                "following.userFollowed": { $ne: req.body.userId }
+            },
+            {
+                $push: {
+                    following: {
+                        userFollowed: req.body.userFollowed
+                    }
+                }
+            }
+        )
+
+        await User.update(
+            {
+                _id: req.user._id,
+                "following.follower": { $ne: req.user._id }
+            },
+            {
+                $push: {
+                    followers: {
+                        follower: req.user._id
+                    }
+                }
+            }
+        )
+    };
+
+    following()
+        .then(() => res.status(HttpStatus.OK).json({ message: 'Success'}))
+        .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
+}
