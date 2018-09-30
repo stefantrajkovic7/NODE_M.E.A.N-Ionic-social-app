@@ -11,7 +11,7 @@
             </h3>
             <p>Country</p>
             <button (click)="follow(user)" *ngIf="!checkInArray(userData.user.following, user._id)" class="btn">Follow</button>
-            <button *ngIf="checkInArray(userData.user.following, user._id)" class="btn disabled">Followed</button>
+            <button *ngIf="checkInArray(userData.user.following, user._id)" class="btn d-btn disabled">Followed</button>
             <a class="secondary-content">
                 <i class="material-icons">chat</i>
             </a>
