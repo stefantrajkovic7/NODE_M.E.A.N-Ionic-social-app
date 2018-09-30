@@ -21,4 +21,8 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {}
 
+  follow(user) {
+    console.log(user)
+  }
+
 }
