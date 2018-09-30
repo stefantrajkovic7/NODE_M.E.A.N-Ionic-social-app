@@ -25,4 +25,16 @@ export class UsersEffects {
     private router: Router,
   ) {}
 
+  @Effect()
+  loadAllUsers$: Observable<Action> = this.actions.ofType(UsersActionTypes.LoadUsers).pipe(
+    map((action: LoadUsers) => action),
+    switchMap(() =>
+      this.usersService.getAllUsers().pipe(
+        retry(3),
+        map((result: any) => new LoadUsersSuccess(result)),
+        catchError(error => of(new LoadUsersFail(error)))
+      )
+    )
+  );
+
 }

@@ -6,4 +6,9 @@ export const getLoading = createSelector(
     selectUsersState,
     users => users.loading
 );
+
+export const getAllUsers = createSelector(
+    selectUsersState,
+    users => users.users
+);
   

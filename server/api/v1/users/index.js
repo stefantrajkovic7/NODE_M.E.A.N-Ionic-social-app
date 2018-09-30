@@ -7,6 +7,6 @@ const controller = require('./controller');
 router.post('/register', controller.create);
 router.post('/login', controller.find);
 router.get('/:id', middleware.authenticate, controller.getUser);
-router.get('/list', middleware.authenticate, controller.getAllUsers);
+router.get('', middleware.authenticate, controller.getAllUsers);
 
 module.exports = router;

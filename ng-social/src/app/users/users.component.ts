@@ -7,6 +7,7 @@ import * as fromUsers from './store';
 import * as fromAuth from '../core/store';
 
 import * as io from 'socket.io-client';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-users',
@@ -20,7 +21,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
   socket: any;
   userData$: Observable<any>;
 
-  constructor(public store: Store<any>) {
+  constructor(public store: Store<any>, private users: UsersService) {
     this.socket = io('http://localhost:3000');
     this.userData$ = store.pipe(select(fromAuth.getUser));
     // this.post$ = store.pipe(select(fromComments.getPost))
@@ -32,6 +33,10 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // this.toolbarElement = document.querySelector('.nav-content');
+    // this.store.dispatch(new UsersAction.LoadUsers());
+    this.users.getAllUsers().subscribe(data => {
+        console.log(data + 'jjj')
+    })
   }
 
   ngAfterViewInit() {
