@@ -12,6 +12,7 @@ import { FollowingService } from './services/following.service';
 import { FollowingComponent } from './following.component';
 import { FollowingGuard } from './following.guard';
 import { FollowingRoutingModule } from './following-routing.module';
+import { FollowingListComponent } from './components/followers-list.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { FollowingRoutingModule } from './following-routing.module';
     EffectsModule.forFeature([FollowingEffects])
   ],
   declarations: [
-    FollowingComponent
+    FollowingComponent,
+    FollowingListComponent
   ],
   providers: [
     FollowingService,

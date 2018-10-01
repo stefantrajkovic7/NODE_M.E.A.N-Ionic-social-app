@@ -28,7 +28,14 @@ const routes: Routes = [
     loadChildren: './comments/comments.module#CommentsModule',
     data: { preload: true },
     // canActivate: [AuthGuard]
-  }
+  },
+
+  {
+    path: 'following',
+    loadChildren: './following/following.module#FollowingModule',
+    data: { preload: true },
+    // canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
