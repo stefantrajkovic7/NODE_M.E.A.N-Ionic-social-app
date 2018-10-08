@@ -7,9 +7,9 @@
         </div>
 
         <div class="col s12 m8 l9">
-            <div class="row">
-                <h4>FOLLOWING</h4>
-            </div>
+            
+            <app-followers [userData]="userData$ | async"></app-followers>
+            
         </div>
     </div>
 </div>

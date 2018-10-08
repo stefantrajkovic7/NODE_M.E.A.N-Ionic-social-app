@@ -9,5 +9,5 @@ export const getLoading = createSelector(
 
 export const getAllFollowers = createSelector(
     selectFollowingState,
-    following => following.followers
+    following => following.following
 );

@@ -12,6 +12,7 @@ import * as io from 'socket.io-client';
 })
 export class FollowingListComponent implements OnInit {
   socket: any;
+  @Input() userData: any;
 
   constructor(private store: Store<any>) {
     this.socket = io('http://localhost:3000');

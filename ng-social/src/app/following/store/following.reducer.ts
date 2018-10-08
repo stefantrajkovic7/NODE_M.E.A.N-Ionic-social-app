@@ -6,13 +6,13 @@ import {
   export interface State {
     loaded: boolean;
     loading: boolean;
-    followers: any;
+    following: any;
   }
   
   const initialState: State = {
     loaded: false,
     loading: false,
-    followers: null
+    following: null
   };
   
   export function reducer(
@@ -31,7 +31,7 @@ import {
       case FollowingActionTypes.LoadFollowersSuccess: {
         return {
             ...state,
-            followers: action.payload.result,
+            following: action.payload.result,
             loading: false
         };
       }
