@@ -171,3 +171,37 @@ exports.followUser = (req, res) => {
         .then(() => res.status(HttpStatus.OK).json({ message: 'Success'}))
         .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
 }
+
+exports.unFollowUser = (req, res) => {
+    const unFollowing = async () => {
+        await User.update(
+            {
+                _id: req.user._id
+            },
+            {
+                $pull: {
+                    following: {
+                        userFollowed: req.body.userFollowed
+                    }
+                }
+            }
+        )
+
+        await User.update(
+            {
+                _id: req.body.userFollowed
+            },
+            {
+                $pull: {
+                    followers: {
+                        follower: req.user._id
+                    }
+                }
+            }
+        )
+    };
+
+    unFollowing()
+        .then(() => res.status(HttpStatus.OK).json({ message: 'Success'}))
+        .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
+}
