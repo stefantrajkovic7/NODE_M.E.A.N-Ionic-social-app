@@ -20,6 +20,16 @@ const userSchema = mongoose.Schema({
         {
             follower: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
         }
+    ],
+    notifications: [
+        {
+            senderId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+            message: { type: String },
+            viewProfile: { type: Boolean, default: false },
+            created: { type: Date, default: Date.now() },
+            read: { type: Boolean, default: false },
+            date: { type: String, default: '' },
+        }
     ]
 })
 

@@ -58,7 +58,7 @@
         </a>
         
     </li>
-    <li class="collection-item">
+    <li class="collection-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
         <a [routerLink]="['/photos']">
             <div>Photos
                 <a href="#!" class="secondary-content">
@@ -67,7 +67,7 @@
             </div>
         </a>
     </li>
-    <li class="collection-item">
+    <li class="collection-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
         <a [routerLink]="['/notifications']">
             <div>Notifications
                 <a href="#!" class="secondary-content">
