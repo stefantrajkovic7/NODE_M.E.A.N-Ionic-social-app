@@ -6,6 +6,11 @@
   .more {
     margin-right: -18px !important;
   }
+
+  .text {
+    text-align: center;
+    font-size: 18px;
+  }
   
   .dropdown-content {
     margin: 0;

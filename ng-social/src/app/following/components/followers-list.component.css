@@ -20,6 +20,11 @@
     z-index: 1;
     will-change: width, height;
   }
+
+  .text {
+    text-align: center;
+    font-size: 18px;
+  }
   
   .collection-item {
     margin: 0px !important;

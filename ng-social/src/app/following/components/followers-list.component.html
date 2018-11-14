@@ -1,4 +1,4 @@
-<div class="row" *ngIf="userData">
+<div class="row" *ngIf="(userData && userData.user.following.length > 0)">
     <div class="col s12 m6 l4 cardDiv" *ngFor="let user of userData.user.following">
         <div class="card">
             <a>
@@ -14,4 +14,8 @@
             </div>
         </div>
     </div>
-</div>>
+</div>
+
+<div class="row" *ngIf="userData.user.following.length <= 0">
+    <h4 class="text">You are not following anyone</h4>
+</div>
