@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap} from 'rxjs/operators';
 
 import * as AuthActions from '../core/store/actions';
-// import * as UsersAction from './store/users.actions';
 import { AuthCookieService } from '../core/services/auth-cookie.service';
 
 @Injectable()
@@ -28,7 +27,6 @@ export class FollowersGuard implements CanActivate {
     return this.store.pipe(
       tap(() => {
         this.store.dispatch(new AuthActions.LoadUser(this.user.data._id));
-        // this.store.dispatch(new UsersAction.LoadUsers());
       }),
       map(User => !!User),
       catchError(() => {
