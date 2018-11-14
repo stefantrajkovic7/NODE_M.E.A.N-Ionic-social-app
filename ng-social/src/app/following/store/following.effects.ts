@@ -6,7 +6,11 @@ import { Actions, Effect, ofType  } from '@ngrx/effects';
 import {
   LoadFollowers,
   LoadFollowersSuccess,
-  LoadFollowersFail
+  LoadFollowersFail,
+  FollowingActionTypes,
+  UnFollowUser,
+  UnFollowUserSuccess,
+  UnFollowUserFail
 } from './following.actions';
 
 import {catchError, map, switchMap, retry} from 'rxjs/operators';
@@ -22,5 +26,22 @@ export class FollowingEffects {
     private followingService: FollowingService,
     private router: Router,
   ) {}
+
+  @Effect()
+  unFollowingAction$: Observable<Action> = this.actions
+    .ofType(FollowingActionTypes.UnFollowUser)
+    .pipe(
+      map((action: UnFollowUser) => action.payload),
+      switchMap((payload: any) => {
+        return this.followingService.unFollow(payload._id)
+          .pipe(
+            retry(3),
+            map(follow => {
+              return new UnFollowUserSuccess({ payload: follow })
+            }),
+            catchError(error => of(new UnFollowUserFail({message: error})))
+          )
+      })
+  );
 
 }

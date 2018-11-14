@@ -203,5 +203,5 @@ exports.unFollowUser = (req, res) => {
 
     unFollowing()
         .then(() => res.status(HttpStatus.OK).json({ message: 'Success'}))
-        .catch(() => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error ocurred'}));
+        .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({err, message: 'Error ocurred'}));
 }

@@ -4,6 +4,7 @@ import { AuthCookieService } from '../../core/services/auth-cookie.service';
 import { Store } from '@ngrx/store';
 
 import * as io from 'socket.io-client';
+import { UnFollowUser } from '../store/following.actions';
 
 @Component({
   selector: 'app-followers',
@@ -21,7 +22,8 @@ export class FollowingListComponent implements OnInit {
   ngOnInit() {}
 
   unFollow(user) {
-    console.log(user)
+    this.store.dispatch(new UnFollowUser(user));
+    this.socket.emit('refresh', {})
   }
 
 }

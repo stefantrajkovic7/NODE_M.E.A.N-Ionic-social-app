@@ -3,7 +3,10 @@ import { Action } from '@ngrx/store';
 export enum FollowingActionTypes {
     LoadFollowers = '[Following] Load Followers',
     LoadFollowersSuccess = '[Following] Load Followers Successfully',
-    LoadFollowersFail = '[Following] Load Followers Failed'
+    LoadFollowersFail = '[Following] Load Followers Failed',
+    UnFollowUser = '[Following] UnFollow User',
+    UnFollowUserSuccess = '[Following] UnFollow User Success',
+    UnFollowUserFail = '[Following] UnFollow User Fail',
 }
 
 /**
@@ -20,6 +23,21 @@ export class LoadFollowersSuccess implements Action {
 
 export class LoadFollowersFail implements Action {
     readonly type = FollowingActionTypes.LoadFollowersFail;
+    constructor(public payload: any) { }
+}
+
+export class UnFollowUser implements Action {
+    readonly type = FollowingActionTypes.UnFollowUser;
+    constructor(public payload: any) { }
+}
+
+export class UnFollowUserSuccess implements Action {
+    readonly type = FollowingActionTypes.UnFollowUserSuccess;
+    constructor(public payload: any) { }
+}
+
+export class UnFollowUserFail implements Action {
+    readonly type = FollowingActionTypes.UnFollowUserFail;
     constructor(public payload: any) { }
 }
 
