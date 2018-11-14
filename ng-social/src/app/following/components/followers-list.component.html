@@ -10,7 +10,7 @@
                 <h3 class="card-title">
                     {{user.userFollowed.username}}
                 </h3>
-                <button class="btn">UnFollow</button>
+                <button (click)="unFollow(user.userFollowed)" class="btn">UnFollow</button>
             </div>
         </div>
     </div>

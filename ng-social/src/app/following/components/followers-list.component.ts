@@ -20,4 +20,8 @@ export class FollowingListComponent implements OnInit {
 
   ngOnInit() {}
 
+  unFollow(user) {
+    console.log(user)
+  }
+
 }
