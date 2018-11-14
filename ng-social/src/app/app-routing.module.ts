@@ -42,6 +42,12 @@ const routes: Routes = [
     data: { preload: true },
     // canActivate: [AuthGuard]
   },
+  {
+    path: 'notifications',
+    loadChildren: './notifications/notifications.module#NotificationsModule',
+    data: { preload: true },
+    // canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({

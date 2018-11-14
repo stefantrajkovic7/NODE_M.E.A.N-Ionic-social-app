@@ -58,7 +58,23 @@
         </a>
         
     </li>
-    <li class="collection-item"><div>Photos<a href="#!" class="secondary-content"><i class="material-icons">photo_library</i></a></div></li>
-    <li class="collection-item"><div>Notifications<a href="#!" class="secondary-content"><i class="material-icons">alarm</i></a></div></li>
+    <li class="collection-item">
+        <a [routerLink]="['/photos']">
+            <div>Photos
+                <a href="#!" class="secondary-content">
+                    <i class="material-icons">photo_library</i>
+                </a>
+            </div>
+        </a>
+    </li>
+    <li class="collection-item">
+        <a [routerLink]="['/notifications']">
+            <div>Notifications
+                <a href="#!" class="secondary-content">
+                    <i class="material-icons">alarm</i>
+                </a>
+            </div>
+        </a>
+    </li>
 </ul>
            
