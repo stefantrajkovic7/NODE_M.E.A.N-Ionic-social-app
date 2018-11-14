@@ -1,0 +1,15 @@
+<app-toolbar [userData]="userData$ | async"></app-toolbar>
+
+<div class="container" style="margin-top: 30px">
+    <div class="row">
+        <div class="col s12 m4 l3">
+            <app-side ></app-side>
+        </div>
+
+        <div class="col s12 m8 l9">
+            
+            <app-followers-list [userData]="userData$ | async"></app-followers-list>
+            
+        </div>
+    </div>
+</div>

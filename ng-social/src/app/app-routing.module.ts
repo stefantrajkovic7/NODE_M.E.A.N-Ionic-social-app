@@ -36,6 +36,12 @@ const routes: Routes = [
     data: { preload: true },
     // canActivate: [AuthGuard]
   },
+  {
+    path: 'followers',
+    loadChildren: './followers/followers.module#FollowersModule',
+    data: { preload: true },
+    // canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
