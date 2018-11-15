@@ -26,4 +26,12 @@ export class NotificationsListComponent implements OnInit {
     return moment(time).fromNow();
   }
 
+  mark() {
+
+  }
+
+  delete() {
+    
+  }
+
 }

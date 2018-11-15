@@ -6,6 +6,14 @@
             <i class="material-icons">brightness_1</i>
         </a>
         <p class="time">{{currentTime(data.created)}}</p>
+        <div>
+            <i class="material-icons" (click)="mark(data)">
+                check
+            </i>
+            <i class="material-icons" (click)="delete(data)">
+                delete_forever
+            </i>
+        </div>
     </li>
 </ul>
 <div class="row" *ngIf="userData.user.notifications.length <= 0">
