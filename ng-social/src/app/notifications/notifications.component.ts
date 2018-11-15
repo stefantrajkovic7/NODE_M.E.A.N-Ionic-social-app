@@ -18,7 +18,6 @@ import { AuthCookieService } from '../core/services/auth-cookie.service';
 })
 export class NotificationsComponent implements OnInit, AfterViewInit {
   toolbarElement: any;
-  id: any;
   socket: any;
   currentUser: any;
   userData$: Observable<any>;

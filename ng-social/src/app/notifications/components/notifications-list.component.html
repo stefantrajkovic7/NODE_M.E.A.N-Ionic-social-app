@@ -1,10 +1,13 @@
-<ul class="collection col s12 m10">
-    <li class="collection-item avatar">
+<ul class="collection col s12 m10" *ngIf="(userData && userData.user.notifications.length > 0)">
+    <li class="collection-item avatar" *ngFor="let data of userData.user.notifications">
         <img src="http://placehold.it/50x50" alt="" class="circle">
-        <span class="title">This is the message</span>
+        <span class="title">{{data.message}}</span>
         <a class="secondary-content">
             <i class="material-icons">brightness_1</i>
         </a>
-        <p class="time">Date</p>
+        <p class="time">{{data.created}}</p>
     </li>
 </ul>
+<div class="row" *ngIf="userData.user.notifications.length <= 0">
+    <h3 class="text">No recent notifications</h3>
+</div>
