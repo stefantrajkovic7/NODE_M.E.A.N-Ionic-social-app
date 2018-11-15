@@ -1,6 +1,6 @@
 import {
-    FollowingActionTypes,
-    FollowingListActionsUnion,
+    NotificationsActionTypes,
+    NotificationsListActionsUnion,
   } from './notifications.actions';
   
   export interface State {
@@ -15,7 +15,7 @@ import {
   
   export function reducer(
     state = initialState,
-    action: FollowingListActionsUnion
+    action: NotificationsListActionsUnion
   ): State {
     switch (action.type) {
       default: {

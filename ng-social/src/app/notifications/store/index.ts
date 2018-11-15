@@ -1,13 +1,8 @@
 import { createSelector } from '@ngrx/store';
 
-export const selectFollowingState = state => state.following;
+export const selectNotificationsState = state => state.notifications;
 
 export const getLoading = createSelector(
-    selectFollowingState,
-    following => following.loading
-);
-
-export const getAllFollowers = createSelector(
-    selectFollowingState,
-    following => following.following
+    selectNotificationsState,
+    notifications => notifications.loading
 );

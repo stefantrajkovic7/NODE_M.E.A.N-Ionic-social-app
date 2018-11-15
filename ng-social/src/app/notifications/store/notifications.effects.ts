@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType  } from '@ngrx/effects';
 
 import {
-  LoadFollowers,
-  LoadFollowersSuccess,
-  LoadFollowersFail,
-  FollowingActionTypes,
-  UnFollowUser,
-  UnFollowUserSuccess,
-  UnFollowUserFail
+  MarkNotificationAction,
+  MarkNotificationActionSuccess,
+  MarkNotificationActionFail,
+  NotificationsActionTypes,
+  DeleteNotification,
+  DeleteNotificationSuccess,
+  DeleteNotificationFail
 } from './notifications.actions';
 
 import {catchError, map, switchMap, retry} from 'rxjs/operators';
