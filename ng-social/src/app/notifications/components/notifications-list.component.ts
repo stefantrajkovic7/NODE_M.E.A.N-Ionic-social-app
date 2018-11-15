@@ -4,7 +4,8 @@ import { AuthCookieService } from '../../core/services/auth-cookie.service';
 import { Store } from '@ngrx/store';
 
 import * as io from 'socket.io-client';
-import { UnFollowUser } from '../store/notifications.actions';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-notifications-list',
@@ -20,5 +21,9 @@ export class NotificationsListComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  currentTime(time) {
+    return moment(time).fromNow();
+  }
 
 }

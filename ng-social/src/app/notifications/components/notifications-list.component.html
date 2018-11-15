@@ -5,7 +5,7 @@
         <a class="secondary-content">
             <i class="material-icons">brightness_1</i>
         </a>
-        <p class="time">{{data.created}}</p>
+        <p class="time">{{currentTime(data.created)}}</p>
     </li>
 </ul>
 <div class="row" *ngIf="userData.user.notifications.length <= 0">
