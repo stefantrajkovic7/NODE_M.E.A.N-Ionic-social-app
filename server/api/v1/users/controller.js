@@ -211,3 +211,18 @@ exports.unFollowUser = (req, res) => {
         .then(() => res.status(HttpStatus.OK).json({ message: 'Success'}))
         .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({err, message: 'Error ocurred'}));
 }
+
+exports.markNotification = async (req, res) => {
+    if (!req.body.deleteAction) {
+        await User.updateOne(
+            {
+                _id: req.user._id,
+                'notification._id': req.params.id
+            }, 
+            {
+                $set: { 'notification.$.read': true }
+            }
+        ).then(() => res.status(HttpStatus.OK).json({message: 'Success'}))
+         .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({err, message: 'Error Ocurred!'}))
+    }
+}

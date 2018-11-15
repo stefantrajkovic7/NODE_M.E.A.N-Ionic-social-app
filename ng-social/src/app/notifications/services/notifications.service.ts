@@ -11,4 +11,11 @@ export const options = {
 @Injectable()
 export class NotificationsService {
     constructor(private _http: HttpClient) {}
+
+    markNotification(id, deleteAction?): Observable<any> {
+        return this._http.post(`${environment.API_BASE_URL}users/mark/${id}`, {
+            id,
+            deleteAction
+        }, options)
+    }
 }

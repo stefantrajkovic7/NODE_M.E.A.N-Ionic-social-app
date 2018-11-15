@@ -8,6 +8,7 @@ router.post('/register', controller.create);
 router.post('/login', controller.find);
 router.post('/follow', middleware.authenticate, controller.followUser);
 router.post('/unfollow', middleware.authenticate, controller.unFollowUser);
+router.post('/mark/:id', middleware.authenticate, controller.markNotification);
 router.get('/:id', middleware.authenticate, controller.getUser);
 router.get('/name/:username', middleware.authenticate, controller.getUserByName);
 router.get('', middleware.authenticate, controller.getAllUsers);

@@ -1,47 +1,34 @@
 import { Action } from '@ngrx/store';
 
-export enum FollowingActionTypes {
-    LoadFollowers = '[Following] Load Followers',
-    LoadFollowersSuccess = '[Following] Load Followers Successfully',
-    LoadFollowersFail = '[Following] Load Followers Failed',
-    UnFollowUser = '[Following] UnFollow User',
+export enum NotificationsActionTypes {
+    MarkNotificationAction = '[Following] Load Followers',
+    MarkNotificationActionSuccess = '[Following] Load Followers Successfully',
+    MarkNotificationActionFail = '[Following] Load Followers Failed',
+    DeleteNotification = '[Following] UnFollow User',
     UnFollowUserSuccess = '[Following] UnFollow User Success',
     UnFollowUserFail = '[Following] UnFollow User Fail',
 }
 
 /**
- * FOLLOWING Actions
+ * NOTIFICATIONS Actions
  */
-export class LoadFollowers implements Action {
-    readonly type = FollowingActionTypes.LoadFollowers;
-}
 
-export class LoadFollowersSuccess implements Action {
-    readonly type = FollowingActionTypes.LoadFollowersSuccess;
-    constructor(public payload: any) { }
-}
-
-export class LoadFollowersFail implements Action {
-    readonly type = FollowingActionTypes.LoadFollowersFail;
-    constructor(public payload: any) { }
-}
-
-export class UnFollowUser implements Action {
-    readonly type = FollowingActionTypes.UnFollowUser;
+export class MarkNotificationAction implements Action {
+    readonly type = NotificationsActionTypes.UnFollowUser;
     constructor(public payload: any) { }
 }
 
 export class UnFollowUserSuccess implements Action {
-    readonly type = FollowingActionTypes.UnFollowUserSuccess;
+    readonly type = NotificationsActionTypes.UnFollowUserSuccess;
     constructor(public payload: any) { }
 }
 
 export class UnFollowUserFail implements Action {
-    readonly type = FollowingActionTypes.UnFollowUserFail;
+    readonly type = NotificationsActionTypes.UnFollowUserFail;
     constructor(public payload: any) { }
 }
 
-export type FollowingListActionsUnion =
+export type NotificationsListActionsUnion =
     | LoadFollowers
     | LoadFollowersSuccess
     | LoadFollowersFail
