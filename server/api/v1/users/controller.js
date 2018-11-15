@@ -161,6 +161,12 @@ exports.followUser = (req, res) => {
                 $push: {
                     followers: {
                         follower: req.user._id
+                    },
+                    notifications: {
+                        senderId: req.user._id,
+                        message: `${req.user.username} is now following you.`,
+                        created: new Date(),
+                        viewProfile: false
                     }
                 }
             }
