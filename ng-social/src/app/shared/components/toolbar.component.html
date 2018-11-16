@@ -3,7 +3,16 @@
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">Frenzy App</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li></li>
+                <li class="dropdown-button dropdown-trigger" data-target="dropdown">
+                    <i class="fa fa-globe fa-1x badge"></i>
+                    <span class="nav-label-icon">2</span>
+                    <ul id='dropdown' class='dropdown-content col s12 collection'>
+                        <li class="collection-item avatar" *ngFor="let data of userData.user.notifications">
+                            <img src="http://placehold.it/50x50" class="circle">
+                            <span>{{data.message}}</span>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a title="Home" (click)="goToUserSection()">
                         <i class="material-icons">
