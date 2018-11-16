@@ -3,11 +3,15 @@
         <img src="http://placehold.it/50x50" alt="" class="circle">
         <span class="title">{{data.message}}</span>
         <a class="secondary-content">
-            <i class="material-icons">brightness_1</i>
+            <i *ngIf="!data.read" class="material-icons">brightness_1</i>
+            <i *ngIf="data.read" class="material-icons">panorama_fish_eye</i>
         </a>
         <p class="time">{{currentTime(data.created)}}</p>
         <div>
-            <i class="material-icons" (click)="mark(data)">
+            <i 
+                class="material-icons" 
+                [ngClass]="data.read ? 'disabled' : 'notDisabled'"
+                (click)="mark(data)">
                 check
             </i>
             <i class="material-icons" (click)="delete(data)">

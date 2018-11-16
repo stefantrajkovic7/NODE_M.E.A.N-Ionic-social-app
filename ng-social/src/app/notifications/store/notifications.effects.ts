@@ -27,4 +27,21 @@ export class NotificationsEffects {
     private router: Router,
   ) {}
 
+  @Effect()
+  MarkNotificationAction$: Observable<Action> = this.actions
+    .ofType(NotificationsActionTypes.MarkNotificationAction)
+    .pipe(
+      map((action: MarkNotificationAction) => action.payload),
+      switchMap((payload: any) => {
+        return this.notificationsService.markNotification(payload)
+          .pipe(
+            retry(3),
+            map(data => {
+              return new MarkNotificationActionSuccess({ payload: data })
+            }),
+            catchError(error => of(new MarkNotificationActionFail({message: error})))
+          )
+      })
+  );
+
 }

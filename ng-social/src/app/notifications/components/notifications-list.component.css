@@ -11,3 +11,11 @@
   text-align: center;
   font-size: 18px;
 }
+
+.disabled {
+  color: #c0c0c0 !important;
+}
+
+.material-icons {
+  cursor: pointer !important;
+}

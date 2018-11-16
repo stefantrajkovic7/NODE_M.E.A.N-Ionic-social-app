@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import * as io from 'socket.io-client';
 
 import * as moment from 'moment';
+import { MarkNotificationAction } from '../store/notifications.actions';
 
 @Component({
   selector: 'app-notifications-list',
@@ -26,12 +27,13 @@ export class NotificationsListComponent implements OnInit {
     return moment(time).fromNow();
   }
 
-  mark() {
-
+  mark(data) {
+    this.store.dispatch(new MarkNotificationAction(data._id))
+    this.socket.emit('refresh', {});
   }
 
   delete() {
-    
+
   }
 
 }

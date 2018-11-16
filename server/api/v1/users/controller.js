@@ -217,10 +217,10 @@ exports.markNotification = async (req, res) => {
         await User.updateOne(
             {
                 _id: req.user._id,
-                'notification._id': req.params.id
+                'notifications._id': req.params.id
             }, 
             {
-                $set: { 'notification.$.read': true }
+                $set: { 'notifications.$.read': true }
             }
         ).then(() => res.status(HttpStatus.OK).json({message: 'Success'}))
          .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({err, message: 'Error Ocurred!'}))
