@@ -224,5 +224,18 @@ exports.markNotification = async (req, res) => {
             }
         ).then(() => res.status(HttpStatus.OK).json({message: 'Success'}))
          .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({err, message: 'Error Ocurred!'}))
+    } else {
+        await User.update(
+            {
+                _id: req.user._id,
+                'notifications._id': req.params.id
+            }, 
+            {
+                $pull: {
+                    notifications: { _id: req.params.id }
+                }
+            }
+        ).then(() => res.status(HttpStatus.OK).json({message: 'Success'}))
+         .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({err, message: 'Error Ocurred!'}))
     }
 }
