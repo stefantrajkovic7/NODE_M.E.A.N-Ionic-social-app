@@ -44,4 +44,21 @@ export class NotificationsEffects {
       })
   );
 
+  @Effect()
+  DeleteNotification$: Observable<Action> = this.actions
+    .ofType(NotificationsActionTypes.DeleteNotification)
+    .pipe(
+      map((action: DeleteNotification) => action.payload),
+      switchMap((payload: any) => {
+        return this.notificationsService.markNotification(payload, true)
+          .pipe(
+            retry(3),
+            map(data => {
+              return new DeleteNotificationSuccess({ payload: data })
+            }),
+            catchError(error => of(new DeleteNotificationFail({message: error})))
+          )
+      })
+  );
+
 }

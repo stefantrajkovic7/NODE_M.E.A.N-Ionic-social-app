@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import * as io from 'socket.io-client';
 
 import * as moment from 'moment';
-import { MarkNotificationAction } from '../store/notifications.actions';
+import { MarkNotificationAction, DeleteNotification } from '../store/notifications.actions';
 
 @Component({
   selector: 'app-notifications-list',
@@ -32,8 +32,9 @@ export class NotificationsListComponent implements OnInit {
     this.socket.emit('refresh', {});
   }
 
-  delete() {
-
+  delete(data) {
+    this.store.dispatch(new DeleteNotification(data._id, true))
+    this.socket.emit('refresh', {});
   }
 
 }

@@ -30,7 +30,7 @@ export class MarkNotificationActionFail implements Action {
 
 export class DeleteNotification implements Action {
     readonly type = NotificationsActionTypes.DeleteNotification;
-    constructor(public payload: any) { }
+    constructor(public payload: any, isDelete: boolean) { }
 }
 
 export class DeleteNotificationSuccess implements Action {
