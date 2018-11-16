@@ -10,6 +10,7 @@
                         <li class="collection-item avatar" *ngFor="let data of userData.user.notifications">
                             <img src="http://placehold.it/50x50" class="circle">
                             <span>{{data.message}}</span>
+                            <p class="time">{{data.created}}</p>
                         </li>
                     </ul>
                 </li>
