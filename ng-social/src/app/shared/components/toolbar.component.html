@@ -9,7 +9,7 @@
                     <ul id='dropdown' class='dropdown-content col s12 collection'>
                         <li class="collection-item avatar" *ngFor="let data of userData.user.notifications">
                             <img src="http://placehold.it/50x50" class="circle">
-                            <span>{{data.message}}</span>
+                            <span [ngClass]="data.read ? 'isRead' : 'unread'">{{data.message}}</span>
                             <p class="time">{{data.created}}</p>
                         </li>
                     </ul>
